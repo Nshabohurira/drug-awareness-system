@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Professional Counselors</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9fafb;
+      margin: 0;
+      padding: 0;
+      color: #1f2937;
+    }
+
+    section {
+      padding: 3rem 1rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    section h2 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    section p {
+      text-align: center;
+      color: #4b5563;
+      margin-bottom: 2rem;
+    }
+
+    .counselor-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    @media (min-width: 768px) {
+      .counselor-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .counselor-card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      padding: 1.5rem;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .counselor-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .counselor-card img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 1rem;
+    }
+
+    .counselor-card h3 {
+      margin: 0.5rem 0;
+      font-size: 1.25rem;
+      color: #111827;
+    }
+
+    .counselor-card h4 {
+      margin: 0;
+      font-size: 1rem;
+      color: #6366f1; /* Indigo */
+      font-weight: normal;
+    }
+
+    .counselor-card p {
+      font-size: 0.9rem;
+      color: #4b5563;
+      margin: 1rem 0;
+      line-height: 1.4;
+    }
+
+    .counselor-card button {
+      background-color: #6366f1; /* Indigo */
+      color: white;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+
+    .counselor-card button:hover {
+      background-color: #4f46e5;
+    }
+  </style>
+</head>
+<body>
+
+  <section>
+    <h2>Meet Our Counselors</h2>
+    <p>Licensed professionals ready to support you with compassion and confidentiality.</p>
+
+    <div class="counselor-grid">
+      <!-- Counselor 1 -->
+      <div class="counselor-card">
+        <img src="https://via.placeholder.com/150" alt="Counselor 1">
+        <h3>Dr. Sarah Kamanzi</h3>
+        <h4>Clinical Psychologist</h4>
+        <p>Helping students manage exam pressure, anxiety, and self-esteem challenges.</p>
+        <button>Book Session</button>
+      </div>
+
+      <!-- Counselor 2 -->
+      <div class="counselor-card">
+        <img src="https://via.placeholder.com/150" alt="Counselor 2">
+        <h3>Mr. James Okello</h3>
+        <h4>Substance Abuse Specialist</h4>
+        <p>Supporting students on the journey to overcome substance abuse and build healthier habits.</p>
+        <button>Book Session</button>
+      </div>
+
+      <!-- Counselor 3 -->
+      <div class="counselor-card">
+        <img src="https://via.placeholder.com/150" alt="Counselor 3">
+        <h3>Ms. Grace Nansubuga</h3>
+        <h4>Student Wellness Counselor</h4>
+        <p>Guiding students through personal challenges, relationships, and emotional struggles.</p>
+        <button>Book Session</button>
+      </div>
+
+      <!-- Counselor 4 -->
+      <div class="counselor-card">
+        <img src="https://via.placeholder.com/150" alt="Counselor 3">
+        <h3>Mr Kawekwa Douglas</h3>
+        <h4>Student Wellness Counselor</h4>
+        <p>Guiding students through personal challenges, relationships, and emotional struggles.</p>
+        <button>Book Session</button>
+      </div>
+
+      <!-- Counselor 5 -->
+      <div class="counselor-card">
+        <img src="https://via.placeholder.com/150" alt="Counselor 3">
+        <h3>Dr (PHD) Martin Bakundana</h3>
+        <h4>Student Wellness Counselor</h4>
+        <p>Guiding students through personal challenges, relationships, and emotional struggles.</p>
+        <button>Book Session</button>
+      </div>
+
+      <!-- Counselor  6-->
+      <div class="counselor-card">
+        <img src="https://via.placeholder.com/150" alt="Counselor 3">
+        <h3>Ms. Grace Nansubuga</h3>
+        <h4>Student Wellness Counselor</h4>
+        <p>Guiding students through personal challenges, relationships, and emotional struggles.</p>
+        <button>Book Session</button>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>

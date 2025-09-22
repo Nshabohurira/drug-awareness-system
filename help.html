@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Get Support & Help</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f9fafb;
+      color: #1f2937;
+    }
+    header {
+      background: #4E54C8;
+      background: linear-gradient(135deg, #4E54C8, #8F94FB);
+      padding: 1rem 5%;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      font-size: 1.5rem;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.2rem;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #ffeb3b;
+    }
+
+    /* Header */
+    .header {
+      padding: 2rem;
+      text-align: center;
+      background: linear-gradient(to right, #c7d2fe, #a7f3d0);
+    }
+    .header h1 {
+      font-size: 2rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+    .header p {
+      font-size: 1rem;
+      color: #4b5563;
+    }
+
+    /* Crisis Help */
+    .crisis-card {
+      max-width: 700px;
+      margin: 2rem auto;
+      background: #fee2e2;
+      border: 2px solid #ef4444;
+      border-radius: 12px;
+      padding: 10px;
+      text-align: center;
+    }
+    .crisis-card svg {
+      width: 30px;
+      height: 30px;
+      color: #ef4444;
+      margin-bottom: 1rem;
+    }
+    .crisis-card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+    .crisis-card p {
+      margin-bottom: 1.5rem;
+      color: #374151;
+    }
+    .emergency-btn {
+     background-color: #ef4444;
+      color: white;
+      border: none;
+      padding:-2px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .emergency-btn:hover {
+      background-color: #dc2626;
+    }
+
+    /* Help Options */
+    .section-title {
+      text-align: center;
+      margin: 3rem 0 1.5rem;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    .help-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+    @media (min-width: 768px) {
+      .help-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    .help-card {
+      background: white;
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+    .help-card:hover {
+      transform: translateY(-5px);
+
+    }
+    .help-card .icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      margin-bottom: 1rem;
+    }
+    .help-card h4 {
+      margin: 0.5rem 0;
+      font-size: 1.25rem;
+    }
+    .help-card p {
+      margin: 0.75rem 0 1rem;
+      color: #4b5563;
+    }
+    .help-card button {
+      width: 100%;
+      padding: 0.75rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      border: 1px solid #d1d5db;
+    }
+    .help-card button:hover {
+      background: #35e670ff;
+    }
+    .help-card.urgent {
+      border: 2px solid #ef4444;
+    }
+    .help-card.urgent button {
+      background: #ef4444;
+      color: white;
+      border: none;
+    }
+    .help-card.urgent button:hover {
+      background: #dc2626;
+    }
+
+    /* Support Info */
+    .support-info {
+      max-width: 1000px;
+      margin: 3rem auto;
+      padding: 0 1rem;
+    }
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    @media (min-width: 768px) {
+      .info-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    .info-item {
+      text-align: center;
+    }
+    .info-item .icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 12px;
+      background-color: #3b82f6;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+    }
+    .info-item h4 {
+      margin-bottom: 0.25rem;
+      font-size: 1.125rem;
+    }
+    .info-item p {
+      color: #4b5563;
+    }
+
+    /* Expectation */
+    .support-section {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 4rem;
+      background: linear-gradient(to right, #c7d2fe, #a7f3d0);;
+      padding: 20px;
+      width: 80%;
+      border-radius:8px;
+    }
+    .support-section h4 {
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+    }
+    .support-section p {
+      color: #374151;
+      line-height: 1.6;
+    }
+    /* Footer */
+    footer {
+      background: #1f2937;
+      color: #f9fafb;
+      padding: 50px 20px 20px;
+      margin-top: 40px;
+    }
+
+    .footer-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .footer-brand h2 {
+      color: #4DA6FF;
+      margin-bottom: 10px;
+    }
+
+    .footer-links h3,
+    .footer-contact h3,
+    .footer-social h3 {
+      margin-bottom: 15px;
+      color: #FFE066;
+    }
+
+    .footer-links ul {
+      list-style: none;
+    }
+
+    .footer-links ul li {
+      margin-bottom: 10px;
+    }
+
+    .footer-links ul li a {
+      text-decoration: none;
+      color: #f9fafb;
+      transition: color 0.3s;
+    }
+
+    .footer-links ul li a:hover {
+      color: #6EE7B7;
+    }
+
+    .footer-contact a {
+      color: #4DA6FF;
+      text-decoration: none;
+    }
+
+    .footer-contact a:hover {
+      text-decoration: underline;
+    }
+
+    .footer-social a {
+      margin-right: 15px;
+      display: inline-block;
+      transition: transform 0.3s;
+      color: #f9fafb;
+    }
+
+    .footer-social a:hover {
+      transform: scale(1.2);
+      color: #6EE7B7;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 20px;
+      border-top: 1px solid #374151;
+      margin-top: 30px;
+      font-size: 0.9rem;
+      color: #9ca3af;
+    }
+
+    /* Social SVG styling */
+    .footer-social svg {
+      width: 24px;
+      height: 24px;
+      fill: currentColor;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>MUBS Awareness Hub</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="learn.html">Learn</a></li>
+        <li><a href="help.html">Get Help</a></li>
+        <li><a href="community.html">Community</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Header -->
+  <section class="header">
+    <h1>Get Support & Help</h1>
+    <p>You don't have to face this alone. Choose the type of support that feels right for you.</p>
+  </section>
+
+  <!-- Crisis Help -->
+  <section class="crisis-card">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01M21 12A9 9 0 113 12a9 9 0 0118 0z"/>
+    </svg>
+    <h3>Need Help Right Now?</h3>
+    <p>If you're in crisis or having thoughts of self-harm, please reach out immediately.</p>
+    <button class="emergency-btn" onclick="window.location.href='tel:+256800111222'">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.95.69l1.52 4.55a1 1 0 01-.5 1.21l-2.26 1.13a11.05 11.05 0 005.52 5.52l1.13-2.26a1 1 0 011.21-.5l4.55 1.52a1 1 0 01.69.95V19a2 2 0 01-2 2h-1C9.16 21 3 14.84 3 7V5z"/>
+      </svg>
+      Call Crisis Line: +256-800-111-222
+    </button>
+  </section>
+
+  <!-- Help Options -->
+  <h2 class="section-title">Choose Your Support Option</h2>
+  <div class="help-grid">
+
+    <div class="help-card">
+      <div class="icon" style="background:#3b82f6">
+        <!-- File Icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="28" height="28">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-6h6v6H9z M5 20h14a2 2 0 002-2V7a2 2 0 00-.59-1.41l-5-5A2 2 0 0014 0H5a2 2 0 00-2 2v16a2 2 0 002 2z"/>
+        </svg>
+      </div>
+      <h4>Anonymous Help Request</h4>
+      <p>Submit a confidential help request. Our counselors will respond within 24 hours.</p>
+      <button>Submit Request</button>
+    </div>
+
+    <div class="help-card">
+      <div class="icon" style="background:#10b981">
+        <!-- Chat Icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="28" height="28">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M21 12c0 4.418-4.03 8-9 8a9.77 9.77 0 01-4-.8L3 20l1.8-4A7.96 7.96 0 013 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+        </svg>
+      </div>
+      <h4>Live Chat Support</h4>
+      <p>Chat with a trained peer counselor or AI assistant for immediate support.</p>
+      <button onclick="window.open('chatbot.html', '_blank')">Start Chat</button>
+
+
+    </div>
+
+    <div class="help-card">
+      <div class="icon" style="background:#8b5cf6">
+        <!-- User Check -->
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="28" height="28">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A7 7 0 1112 19a7 7 0 01-6.879-1.196zM15 12l2 2 4-4"/>
+        </svg>
+      </div>
+      <h4>Professional Counselors</h4>
+      <p>Connect with licensed counselors and mental health professionals.</p>
+      <button>View Contacts</button>
+    </div>
+
+    <div class="help-card urgent">
+      <div class="icon" style="background:#ef4444">
+        <!-- Phone -->
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="28" height="28">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.95.69l1.52 4.55a1 1 0 01-.5 1.21l-2.26 1.13a11.05 11.05 0 005.52 5.52l1.13-2.26a1 1 0 011.21-.5l4.55 1.52a1 1 0 01.69.95V19a2 2 0 01-2 2h-1C9.16 21 3 14.84 3 7V5z"/>
+        </svg>
+      </div>
+      <h4>Crisis Helpline</h4>
+      <p>Available 24/7 for immediate crisis intervention and emergency support.</p>
+      <button onclick="window.location.href='tel:+256800111222'">Call Now: +256-800-111-222</button>
+    </div>
+  </div>
+
+  <!-- Support Info -->
+  <div class="support-info">
+    <h3 class="section-title">Why Choose Our Support?</h3>
+    <div class="info-grid">
+      <div class="info-item">
+        <div class="icon">
+          <!-- Clock -->
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="32" height="32">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6l4 2m6-2a10 10 0 11-20 0 10 10 0 0120 0z"/>
+          </svg>
+        </div>
+        <h4>24/7 Support</h4>
+        <p>Someone is always available to help</p>
+      </div>
+
+      <div class="info-item">
+        <div class="icon">
+          <!-- User -->
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="32" height="32">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A7 7 0 1112 19a7 7 0 01-6.879-1.196z"/>
+          </svg>
+        </div>
+        <h4>Confidential</h4>
+        <p>Your privacy is completely protected</p>
+      </div>
+
+      <div class="info-item">
+        <div class="icon">
+          <!-- Alert -->
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="32" height="32">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01M21 12A9 9 0 113 12a9 9 0 0118 0z"/>
+          </svg>
+        </div>
+        <h4>No Judgment</h4>
+        <p>Safe space free from stigma</p>
+      </div>
+    </div>
+
+    <div class="support-section">
+      <h4>What to Expect</h4>
+      <p>
+        Our support team consists of trained counselors, peer supporters, and mental health professionals. 
+        All conversations are confidential, and we follow strict privacy guidelines. 
+        Whether you're struggling with substance use, considering getting help, or supporting someone else, 
+        we're here to provide compassionate, non-judgmental support.
+      </p>
+    </div>
+    
+  </div>
+  <!-- Footer -->
+  <footer>
+    <div class="footer-container">
+      <!-- Branding -->
+      <div class="footer-brand">
+        <h2>AwarenessHub</h2>
+        <p>Breaking the stigma, building awareness among students.</p>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="footer-links">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Learn</a></li>
+          <li><a href="#">Get Help</a></li>
+          <li><a href="#">Community</a></li>
+          <li><a href="#">Events</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div class="footer-contact">
+        <h3>Contact Us</h3>
+        <p>Email: <a href="mailto:support@mubsawareness.com">support@mubsawareness.com</a></p>
+        <p>Tel: +256 700 000000</p>
+        <p>Kampala, Uganda</p>
+      </div>
+
+      <!-- Social -->
+      <div class="footer-social">
+        <h3>Connect</h3>
+        <a href="#" aria-label="Facebook">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22.675 0h-21.35C.597 0 0 .597 0 1.333v21.333C0 23.403.597 24 1.325 24h11.497v-9.294H9.691V11.08h3.131V8.414c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.464.099 2.796.143v3.24h-1.918c-1.504 0-1.797.715-1.797 1.764v2.308h3.587l-.467 3.626h-3.12V24h6.116C23.403 24 24 23.403 24 22.667V1.333C24 .597 23.403 0 22.675 0z"/></svg>
+        </a>
+        <a href="#" aria-label="Twitter">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M24 4.557a9.93 9.93 0 01-2.828.775 4.932 4.932 0 002.165-2.724 9.864 9.864 0 01-3.127 1.195A4.918 4.918 0 0016.616 3c-2.717 0-4.924 2.206-4.924 4.924 0 .386.044.762.127 1.124C7.728 8.856 4.1 6.884 1.671 3.905a4.822 4.822 0 00-.666 2.475c0 1.708.869 3.213 2.188 4.096a4.904 4.904 0 01-2.229-.616v.062c0 2.385 1.693 4.374 3.946 4.827a4.935 4.935 0 01-2.224.085c.627 1.956 2.444 3.379 4.6 3.421A9.868 9.868 0 010 19.54 13.93 13.93 0 007.548 22c9.056 0 14.01-7.496 14.01-13.986 0-.213-.005-.425-.014-.636A9.935 9.935 0 0024 4.557z"/></svg>
+        </a>
+        <a href="#" aria-label="Instagram">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.35 3.608 1.325.975.975 1.263 2.242 1.325 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.35 2.633-1.325 3.608-.975.975-2.242 1.263-3.608 1.325-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.35-3.608-1.325-.975-.975-1.263-2.242-1.325-3.608C2.175 15.646 2.163 15.266 2.163 12s.012-3.584.07-4.85c.062-1.366.35-2.633 1.325-3.608.975-.975 2.242-1.263 3.608-1.325C8.416 2.175 8.796 2.163 12 2.163zm0-2.163C8.741 0 8.332.012 7.052.07 5.775.128 4.638.417 3.678 1.377 2.718 2.337 2.429 3.474 2.371 4.751 2.313 6.031 2.3 6.441 2.3 12c0 5.559.012 5.969.07 7.249.058 1.277.347 2.414 1.307 3.374.96.96 2.097 1.249 3.374 1.307 1.28.058 1.689.07 7.249.07s5.969-.012 7.249-.07c1.277-.058 2.414-.347 3.374-1.307.96-.96 1.249-2.097 1.307-3.374.058-1.28.07-1.689.07-7.249s-.012-5.969-.07-7.249c-.058-1.277-.347-2.414-1.307-3.374-.96-.96-2.097-1.249-3.374-1.307C17.969.012 17.559 0 12 0z"/><path d="M12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zm0 10.162a3.999 3.999 0 110-7.998 3.999 3.999 0 010 7.998zM18.406 4.594a1.44 1.44 0 100 2.88 1.44 1.44 0 000-2.88z"/></svg>
+        </a>
+        <a href="#" aria-label="LinkedIn">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.225.792 24 1.771 24h20.451C23.2 24 24 23.225 24 22.271V1.729C24 .774 23.2 0 22.225 0zM7.118 20.452H3.556V9h3.562v11.452zM5.337 7.56c-1.144 0-2.067-.926-2.067-2.067 0-1.143.923-2.067 2.067-2.067 1.141 0 2.067.924 2.067 2.067 0 1.141-.926 2.067-2.067 2.067zM20.452 20.452h-3.562v-5.604c0-1.336-.027-3.055-1.862-3.055-1.864 0-2.15 1.455-2.15 2.957v5.702H9.316V9h3.418v1.561h.048c.477-.9 1.64-1.85 3.376-1.85 3.608 0 4.274 2.373 4.274 5.456v6.285z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2025 AwarenessHub | All Rights Reserved</p>
+    </div>
+  </footer>
+
+</body>
+</html>

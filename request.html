@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anonymous Help Request</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f9fafb;
+      color: #1f2937;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 3rem auto;
+      padding: 2rem;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 1.75rem;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      text-align: center;
+      color: #4b5563;
+      margin-bottom: 2rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+
+    textarea, input {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 0.85rem;
+      background-color: #3b82f6;
+      color: white;
+      font-weight: bold;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #2563eb;
+    }
+
+    .success-message {
+      display: none;
+      text-align: center;
+      margin-top: 1.5rem;
+      color: #16a34a;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Anonymous Help Request</h2>
+    <p>Share what’s on your mind. You don’t need to provide your name or contact info.</p>
+
+    <form id="helpForm">
+      <div class="form-group">
+        <label for="topic">Topic (optional)</label>
+        <input type="text" id="topic" name="topic" placeholder="e.g. Stress, Anxiety, Family Issues">
+      </div>
+
+      <div class="form-group">
+        <label for="message">Your Message *</label>
+        <textarea id="message" name="message" placeholder="Write your thoughts here..." required></textarea>
+      </div>
+
+      <button type="submit" class="btn">Submit Request</button>
+      <div class="success-message" id="successMessage">✅ Your request has been submitted anonymously. Thank you for reaching out!</div>
+    </form>
+  </div>
+
+  <script>
+    const form = document.getElementById('helpForm');
+    const successMessage = document.getElementById('successMessage');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Simulate sending data (no backend yet)
+      form.reset();
+      successMessage.style.display = 'block';
+
+      setTimeout(() => {
+        successMessage.style.display = 'none';
+      }, 4000);
+    });
+  </script>
+</body>
+</html>

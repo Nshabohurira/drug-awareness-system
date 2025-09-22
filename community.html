@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Community Stories</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #f9fafb;
+      color: #1f2937;
+    }
+
+    /* Header */
+    .header {
+      padding: 3rem 1rem 2rem;
+      text-align: center;
+      background: linear-gradient(to right, #4f46e5, #818cf8);
+      color: white;
+    }
+
+    .header h1 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .header p {
+      max-width: 600px;
+      margin: 0 auto;
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+
+    /* Card */
+    .card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .card-header {
+      margin-bottom: 1rem;
+    }
+
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: bold;
+      margin: 0.5rem 0;
+      color: #111827;
+    }
+
+    .card-description {
+      font-size: 0.9rem;
+      color: #6b7280;
+    }
+
+    /* Button */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.6rem 1.2rem;
+      border-radius: 8px;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      font-size: 0.9rem;
+    }
+
+    .btn-primary {
+      background-color: #4f46e5;
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background-color: #4338ca;
+    }
+
+    .btn-outline {
+      border: 1px solid #d1d5db;
+      background: white;
+      color: #374151;
+    }
+
+    .btn-outline:hover {
+      background-color: #f3f4f6;
+    }
+
+    .btn-ghost {
+      background: none;
+      color: #4f46e5;
+      padding: 0.3rem 0.6rem;
+    }
+
+    .btn-ghost:hover {
+      color: #4338ca;
+    }
+
+    /* Category Filter */
+    .categories {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+
+    /* Stories */
+    .story-category {
+      font-size: 0.75rem;
+      background: #e0e7ff;
+      color: #4f46e5;
+      padding: 0.2rem 0.6rem;
+      border-radius: 9999px;
+      font-weight: 500;
+    }
+
+    .story-time {
+      display: flex;
+      align-items: center;
+      font-size: 0.8rem;
+      color: #6b7280;
+    }
+
+    .story-time svg {
+      width: 14px;
+      height: 14px;
+      margin-right: 0.3rem;
+    }
+
+    .story-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 1rem;
+    }
+
+    .story-actions {
+      display: flex;
+      gap: 1rem;
+      color: #6b7280;
+      font-size: 0.9rem;
+    }
+
+    .story-actions button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: inherit;
+      display: flex;
+      align-items: center;
+      gap: 0.2rem;
+    }
+
+    .story-actions button:hover {
+      color: #4f46e5;
+    }
+
+    /* Guidelines */
+    .guidelines {
+      margin-top: 3rem;
+      padding: 2rem;
+    }
+
+    .guidelines h3 {
+      text-align: center;
+      font-size: 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .guideline-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    @media (min-width: 768px) {
+      .guideline-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .guideline h4 {
+      margin: 0 0 0.3rem;
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .guideline p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: #6b7280;
+    }
+    /* Footer */
+    footer {
+      background: #1f2937;
+      color: #f9fafb;
+      padding: 50px 20px 20px;
+      margin-top: 40px;
+    }
+
+    .footer-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .footer-brand h2 {
+      color: #4DA6FF;
+      margin-bottom: 10px;
+    }
+
+    .footer-links h3,
+    .footer-contact h3,
+    .footer-social h3 {
+      margin-bottom: 15px;
+      color: #FFE066;
+    }
+
+    .footer-links ul {
+      list-style: none;
+    }
+
+    .footer-links ul li {
+      margin-bottom: 10px;
+    }
+
+    .footer-links ul li a {
+      text-decoration: none;
+      color: #f9fafb;
+      transition: color 0.3s;
+    }
+
+    .footer-links ul li a:hover {
+      color: #6EE7B7;
+    }
+
+    .footer-contact a {
+      color: #4DA6FF;
+      text-decoration: none;
+    }
+
+    .footer-contact a:hover {
+      text-decoration: underline;
+    }
+
+    .footer-social a {
+      margin-right: 15px;
+      display: inline-block;
+      transition: transform 0.3s;
+      color: #f9fafb;
+    }
+
+    .footer-social a:hover {
+      transform: scale(1.2);
+      color: #6EE7B7;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 20px;
+      border-top: 1px solid #374151;
+      margin-top: 30px;
+      font-size: 0.9rem;
+      color: #9ca3af;
+    }
+
+    /* Social SVG styling */
+    .footer-social svg {
+      width: 24px;
+      height: 24px;
+      fill: currentColor;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <h1>Community Stories</h1>
+    <p>Share your journey anonymously and connect with others who understand your experience.</p>
+  </header>
+
+  <!-- Submit Story -->
+  <section class="px-4" style="max-width: 800px; margin: 2rem auto;">
+    <div class="card" style="text-align: center; background: #eef2ff;">
+      <h3 class="text-xl font-semibold text-foreground mb-2">Your Story Matters</h3>
+      <p class="text-muted-foreground mb-6">
+        Sharing your experience can help others feel less alone. All stories are published anonymously.
+      </p>
+      <button class="btn btn-primary">+ Submit Your Story</button>
+    </div>
+  </section>
+
+  <!-- Category Filter -->
+  <section style="max-width: 900px; margin: 0 auto;">
+    <div class="categories">
+      <button class="btn btn-outline" onclick="filterStories('All Stories')">All Stories</button>
+      <button class="btn btn-outline" onclick="filterStories('Recovery Journey')">Recovery Journey</button>
+      <button class="btn btn-outline" onclick="filterStories('Support Stories')">Support Stories</button>
+      <button class="btn btn-outline" onclick="filterStories('Wellness Tips')">Wellness Tips</button>
+      <button class="btn btn-outline" onclick="filterStories('Mental Health')">Mental Health</button>
+      <button class="btn btn-outline" onclick="filterStories('Campus Life')">Campus Life</button>
+    </div>
+  </section>
+
+  <!-- Stories -->
+  <section style="max-width: 800px; margin: 2rem auto;" id="stories-container"></section>
+
+  <!-- Guidelines -->
+  <section class="guidelines" style="max-width: 800px; margin: 0 auto;">
+    <h3>Community Guidelines</h3>
+    <div class="guideline-grid">
+      <div class="guideline">
+        <h4>Be Respectful</h4>
+        <p>Treat all community members with kindness and respect</p>
+      </div>
+      <div class="guideline">
+        <h4>Stay Anonymous</h4>
+        <p>Never share personal identifying information</p>
+      </div>
+      <div class="guideline">
+        <h4>No Medical Advice</h4>
+        <p>Share experiences, not medical recommendations</p>
+      </div>
+      <div class="guideline">
+        <h4>Support Each Other</h4>
+        <p>Offer encouragement and hope to fellow members</p>
+      </div>
+      
+
+    </div>
+    
+  </section>
+  <!-- Footer -->
+  <footer>
+    <div class="footer-container">
+      <!-- Branding -->
+      <div class="footer-brand">
+        <h2>AwarenessHub</h2>
+        <p>Breaking the stigma, building awareness among students.</p>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="footer-links">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Learn</a></li>
+          <li><a href="#">Get Help</a></li>
+          <li><a href="#">Community</a></li>
+          <li><a href="#">Events</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div class="footer-contact">
+        <h3>Contact Us</h3>
+        <p>Email: <a href="mailto:support@mubsawareness.com">support@mubsawareness.com</a></p>
+        <p>Tel: +256 700 000000</p>
+        <p>Kampala, Uganda</p>
+      </div>
+
+      <!-- Social -->
+      <div class="footer-social">
+        <h3>Connect</h3>
+        <a href="#" aria-label="Facebook">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22.675 0h-21.35C.597 0 0 .597 0 1.333v21.333C0 23.403.597 24 1.325 24h11.497v-9.294H9.691V11.08h3.131V8.414c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.464.099 2.796.143v3.24h-1.918c-1.504 0-1.797.715-1.797 1.764v2.308h3.587l-.467 3.626h-3.12V24h6.116C23.403 24 24 23.403 24 22.667V1.333C24 .597 23.403 0 22.675 0z"/></svg>
+        </a>
+        <a href="#" aria-label="Twitter">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M24 4.557a9.93 9.93 0 01-2.828.775 4.932 4.932 0 002.165-2.724 9.864 9.864 0 01-3.127 1.195A4.918 4.918 0 0016.616 3c-2.717 0-4.924 2.206-4.924 4.924 0 .386.044.762.127 1.124C7.728 8.856 4.1 6.884 1.671 3.905a4.822 4.822 0 00-.666 2.475c0 1.708.869 3.213 2.188 4.096a4.904 4.904 0 01-2.229-.616v.062c0 2.385 1.693 4.374 3.946 4.827a4.935 4.935 0 01-2.224.085c.627 1.956 2.444 3.379 4.6 3.421A9.868 9.868 0 010 19.54 13.93 13.93 0 007.548 22c9.056 0 14.01-7.496 14.01-13.986 0-.213-.005-.425-.014-.636A9.935 9.935 0 0024 4.557z"/></svg>
+        </a>
+        <a href="#" aria-label="Instagram">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.35 3.608 1.325.975.975 1.263 2.242 1.325 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.35 2.633-1.325 3.608-.975.975-2.242 1.263-3.608 1.325-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.35-3.608-1.325-.975-.975-1.263-2.242-1.325-3.608C2.175 15.646 2.163 15.266 2.163 12s.012-3.584.07-4.85c.062-1.366.35-2.633 1.325-3.608.975-.975 2.242-1.263 3.608-1.325C8.416 2.175 8.796 2.163 12 2.163zm0-2.163C8.741 0 8.332.012 7.052.07 5.775.128 4.638.417 3.678 1.377 2.718 2.337 2.429 3.474 2.371 4.751 2.313 6.031 2.3 6.441 2.3 12c0 5.559.012 5.969.07 7.249.058 1.277.347 2.414 1.307 3.374.96.96 2.097 1.249 3.374 1.307 1.28.058 1.689.07 7.249.07s5.969-.012 7.249-.07c1.277-.058 2.414-.347 3.374-1.307.96-.96 1.249-2.097 1.307-3.374.058-1.28.07-1.689.07-7.249s-.012-5.969-.07-7.249c-.058-1.277-.347-2.414-1.307-3.374-.96-.96-2.097-1.249-3.374-1.307C17.969.012 17.559 0 12 0z"/><path d="M12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zm0 10.162a3.999 3.999 0 110-7.998 3.999 3.999 0 010 7.998zM18.406 4.594a1.44 1.44 0 100 2.88 1.44 1.44 0 000-2.88z"/></svg>
+        </a>
+        <a href="#" aria-label="LinkedIn">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.225.792 24 1.771 24h20.451C23.2 24 24 23.225 24 22.271V1.729C24 .774 23.2 0 22.225 0zM7.118 20.452H3.556V9h3.562v11.452zM5.337 7.56c-1.144 0-2.067-.926-2.067-2.067 0-1.143.923-2.067 2.067-2.067 1.141 0 2.067.924 2.067 2.067 0 1.141-.926 2.067-2.067 2.067zM20.452 20.452h-3.562v-5.604c0-1.336-.027-3.055-1.862-3.055-1.864 0-2.15 1.455-2.15 2.957v5.702H9.316V9h3.418v1.561h.048c.477-.9 1.64-1.85 3.376-1.85 3.608 0 4.274 2.373 4.274 5.456v6.285z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2025 AwarenessHub | All Rights Reserved</p>
+    </div>
+  </footer>
+
+  <script>
+    const stories = [
+      {
+        id: 1,
+        title: "Finding Strength in Recovery",
+        preview: "It's been 6 months since I decided to get help. The journey hasn't been easy, but every day gets a little better...",
+        author: "Anonymous Student",
+        timeAgo: "2 hours ago",
+        likes: 23,
+        comments: 8,
+        category: "Recovery Journey"
+      },
+      {
+        id: 2,
+        title: "Supporting a Friend Through Addiction",
+        preview: "When I realized my roommate was struggling with substance use, I didn't know how to help. Here's what I learned...",
+        author: "Anonymous Supporter",
+        timeAgo: "5 hours ago",
+        likes: 31,
+        comments: 12,
+        category: "Support Stories"
+      },
+      {
+        id: 3,
+        title: "Coping with University Stress Without Substances",
+        preview: "Exam season used to be my trigger. I want to share some healthy coping strategies that have worked for me...",
+        author: "Anonymous Student",
+        timeAgo: "1 day ago",
+        likes: 45,
+        comments: 18,
+        category: "Wellness Tips"
+      },
+      {
+        id: 4,
+        title: "Breaking the Silence",
+        preview: "For too long, I was ashamed to talk about my struggles. Speaking up was the first step toward healing...",
+        author: "Anonymous Student",
+        timeAgo: "2 days ago",
+        likes: 67,
+        comments: 25,
+        category: "Mental Health"
+      },
+      {
+        id: 5,
+        title: "Building a Support Network at MUBS",
+        preview: "University can feel isolating when you're struggling. Here's how I found my community of support...",
+        author: "Anonymous Student",
+        timeAgo: "3 days ago",
+        likes: 38,
+        comments: 15,
+        category: "Campus Life"
+      }
+    ];
+
+    let selectedCategory = "All Stories";
+
+    function renderStories() {
+      const container = document.getElementById("stories-container");
+      container.innerHTML = "";
+
+      const filtered = selectedCategory === "All Stories"
+        ? stories
+        : stories.filter(s => s.category === selectedCategory);
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div style="text-align: center; padding: 2rem; color: #6b7280;">
+            <p>No stories found in this category yet.</p>
+            <p>Be the first to share your experience!</p>
+          </div>
+        `;
+        return;
+      }
+
+      filtered.forEach(story => {
+        const storyCard = document.createElement("div");
+        storyCard.className = "card";
+        storyCard.innerHTML = `
+          <div class="card-header">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+              <span class="story-category">${story.category}</span>
+              <div class="story-time">
+                ⏰ ${story.timeAgo}
+              </div>
+            </div>
+            <h2 class="card-title">${story.title}</h2>
+            <p class="card-description">by ${story.author}</p>
+          </div>
+          <div class="card-content">
+            <p style="color: #6b7280; margin-bottom: 1rem;">${story.preview}</p>
+            <div class="story-footer">
+              <div class="story-actions">
+                <button onclick="likeStory(${story.id})">❤️ ${story.likes}</button>
+                <button>💬 ${story.comments}</button>
+              </div>
+              <button class="btn btn-ghost">Read More →</button>
+            </div>
+          </div>
+        `;
+        container.appendChild(storyCard);
+      });
+    }
+
+    function filterStories(category) {
+      selectedCategory = category;
+      renderStories();
+    }
+
+    function likeStory(id) {
+      const story = stories.find(s => s.id === id);
+      if (story) {
+        story.likes++;
+        renderStories();
+      }
+    }
+
+    renderStories();
+  </script>
+</body>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Drug Awareness Chatbot</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .chat-container {
+      width: 350px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .chat-header {
+      background: #4CAF50;
+      color: #fff;
+      padding: 15px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .chat-messages {
+      flex: 1;
+      padding: 15px;
+      overflow-y: auto;
+    }
+
+    .chat-input {
+      display: flex;
+      border-top: 1px solid #ddd;
+    }
+
+    .chat-input input {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      outline: none;
+    }
+
+    .chat-input button {
+      padding: 10px 15px;
+      border: none;
+      background: #4CAF50;
+      color: white;
+      cursor: pointer;
+    }
+
+    .message {
+      margin-bottom: 10px;
+      display: flex;
+    }
+
+    .message.user {
+      justify-content: flex-end;
+    }
+
+    .message.bot {
+      justify-content: flex-start;
+    }
+
+    .message p {
+      padding: 10px;
+      border-radius: 10px;
+      max-width: 70%;
+    }
+
+    .message.user p {
+      background: #DCF8C6;
+    }
+
+    .message.bot p {
+      background: #eee;
+    }
+  </style>
+</head>
+<body>
+
+<div class="chat-container">
+  <div class="chat-header">Drug Awareness Bot</div>
+  <div class="chat-messages" id="chatMessages"></div>
+  <div class="chat-input">
+    <input type="text" id="userInput" placeholder="Type your question...">
+    <button onclick="sendMessage()">Send</button>
+  </div>
+</div>
+
+<script>
+  const responses = {
+    "what is drug abuse": "Drug abuse is the harmful or excessive use of substances for non-medical purposes.",
+  "effects of marijuana": "Marijuana can affect memory, concentration, coordination, and motivation.",
+  "effects of alcohol": "Excessive alcohol use can damage your liver, brain, and relationships.",
+  "effects of cocaine": "Cocaine can increase heart rate, blood pressure, and risk of heart attack or stroke.",
+  "effects of heroin": "Heroin use can cause addiction, respiratory problems, and severe withdrawal symptoms.",
+  "how to get help": "You can contact your university counselor, local rehab centers, or hotlines for help.",
+  "how to quit drugs": "Quitting is hard, but seeking support from professionals and loved ones makes it easier.",
+  "signs of drug abuse": "Changes in mood, withdrawal from friends/family, declining academic performance, and secretive behavior.",
+  "why do people use drugs": "People may use drugs due to peer pressure, stress, curiosity, or emotional pain.",
+  "risks of vaping": "Vaping can harm your lungs, contain addictive nicotine, and may act as a gateway to other substances.",
+  "how to support a friend": "Listen without judgment, encourage professional help, and avoid enabling their drug use.",
+  "long term effects of drug abuse": "Chronic health issues, addiction, mental health problems, and strained relationships.",
+  "is prescription drug abuse dangerous": "Yes! Misusing prescription drugs can cause addiction, overdose, and long-term health problems.",
+  "effects of methamphetamine": "Meth can cause paranoia, aggression, dental problems, and severe brain damage.",
+  "effects of ecstasy/mdma": "MDMA can cause dehydration, overheating, heart problems, and long-term memory issues.",
+  "can drug abuse affect studies": "Yes, drug abuse can reduce focus, memory, and motivation, leading to poor academic performance.",
+  "is addiction curable": "Addiction can be managed and treated with therapy, support, and sometimes medication.",
+  "how to prevent drug abuse": "Educate yourself, avoid peer pressure, engage in healthy activities, and seek help when stressed.",
+  "emergency help for overdose": "Call emergency services immediately. Stay with the person and follow first aid instructions.",
+  "resources for students": "You can reach out to campus health services, counseling centers, and national drug helplines."
+  };
+
+  function getBotResponse(message) {
+    message = message.toLowerCase();
+    return responses[message] || "I'm not sure about that. Please contact a counselor or type another question.";
+  }
+
+  function sendMessage() {
+    const input = document.getElementById("userInput");
+    const message = input.value.trim();
+    if (!message) return;
+
+    // Display user message
+    const chatMessages = document.getElementById("chatMessages");
+    const userMsg = document.createElement("div");
+    userMsg.className = "message user";
+    userMsg.innerHTML = `<p>${message}</p>`;
+    chatMessages.appendChild(userMsg);
+
+    // Get bot response
+    const botReply = getBotResponse(message);
+    const botMsg = document.createElement("div");
+    botMsg.className = "message bot";
+    botMsg.innerHTML = `<p>${botReply}</p>`;
+    chatMessages.appendChild(botMsg);
+
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+    input.value = "";
+  }
+
+  // Optional: Send message on Enter key
+  document.getElementById("userInput").addEventListener("keypress", function(e) {
+    if (e.key === "Enter") sendMessage();
+  });
+</script>
+
+</body>
+</html>
