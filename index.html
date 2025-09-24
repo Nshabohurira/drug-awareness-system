@@ -19,13 +19,18 @@
     }
 
     header {
-      background: #4E54C8;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
       background: linear-gradient(135deg, #4E54C8, #8F94FB);
       padding: 1rem 5%;
       color: #fff;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      z-index: 1000;
+      box-sizing: border-box;
     }
 
     header h1 {
@@ -47,6 +52,62 @@
 
     nav a:hover {
       color: #ffeb3b;
+    }
+
+    /* Hamburger styles */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 5px;
+    }
+
+    .hamburger div {
+      width: 25px;
+      height: 3px;
+      background: white;
+      border-radius: 2px;
+      transition: 0.3s;
+    }
+
+    /* Mobile dropdown menu */
+    .mobile-nav {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 70px;
+      right: 5%;
+      background: #4E54C8;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      z-index: 999;
+    }
+
+    .mobile-nav a {
+      padding: 12px 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+      text-align: left;
+      color: #fff;
+    }
+
+    .mobile-nav a:hover {
+      background: #8F94FB;
+      color: #ffeb3b;
+    }
+
+    .mobile-nav.show {
+      display: flex;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      nav ul {
+        display: none;
+      }
+      .hamburger {
+        display: flex;
+      }
     }
 
     /* Hero section */
@@ -404,7 +465,22 @@
         <li><a href="community.html">Community</a></li>
       </ul>
     </nav>
+    <div class="hamburger" onclick="toggleMenu()">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+
   </header>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-nav" id="mobileMenu">
+    <a href="index.html">Home</a>
+    <a href="learn.html">Learn</a>
+    <a href="help.html">Get Help</a>
+    <a href="community.html">Community</a>
+  </div>
+  
 
   <section class="hero">
     <div class="hero-text">
@@ -532,6 +608,12 @@
       <p>&copy; 2025 AwarenessHub | All Rights Reserved</p>
     </div>
   </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById("mobileMenu").classList.toggle("show");
+    }
+  </script>
 </body>
 </html>
 
