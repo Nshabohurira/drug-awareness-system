@@ -72,6 +72,19 @@
       border-radius: 2px;
       transition: 0.3s;
     }
+    /* Hamburger Active Animation */
+.hamburger.active div:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.active div:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active div:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
 
     /* Mobile dropdown menu */
     .mobile-nav {
@@ -162,9 +175,13 @@
     }
 
     .hero-image img {
-      max-width: 90%;
+      max-width: 100%;
       border-radius: 15px;
       box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      
+    }
+    img{
+      padding: 5px;
     }
 
     /* Features */
@@ -614,10 +631,12 @@
   </footer>
 
   <script>
-    function toggleMenu() {
-      document.getElementById("mobileMenu").classList.toggle("show");
-    }
-  </script>
+  function toggleMenu() {
+    document.getElementById("mobileMenu").classList.toggle("show");
+    document.querySelector(".hamburger").classList.toggle("active");
+  }
+</script>
+
 </body>
 </html>
 
