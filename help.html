@@ -170,7 +170,7 @@
       background: #dc2626;
     }
 
-    /* Support Info */
+    /* Support Info 
     .support-info {
       max-width: 1000px;
       margin: 3rem auto;
@@ -207,7 +207,57 @@
     }
     .info-item p {
       color: #4b5563;
-    }
+    } */
+
+    .support-info {
+  padding: 40px 20px;
+  text-align: center;
+  background: #f9f9f9; /* light background */
+  margin: 50px;
+}
+
+.support-info .section-title {
+  font-size: 24px;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* responsive */
+  gap: 20px;
+}
+
+.info-item {
+  background: #fff; /* white card */
+  padding: 20px;
+  border-radius: 15px; /* rounded corners */
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1); /* soft shadow */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.info-item:hover {
+  transform: translateY(-5px); /* lift effect */
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+.info-item .icon {
+  margin-bottom: 15px;
+  color: #4CAF50; /* primary accent color */
+}
+
+.info-item h4 {
+  margin: 10px 0;
+  font-size: 18px;
+  color: #222;
+}
+
+.info-item p {
+  font-size: 14px;
+  color: #555;
+}
+
+
 
     /* Expectation */
     .support-section {
@@ -218,6 +268,8 @@
       padding: 20px;
       width: 80%;
       border-radius:8px;
+      margin-top: 50px;
+      
     }
     .support-section h4 {
       font-size: 1.25rem;
@@ -358,7 +410,8 @@
       </div>
       <h4>Anonymous Help Request</h4>
       <p>Submit a confidential help request. Our counselors will respond within 24 hours.</p>
-      <button>Submit Request</button>
+      <button onclick="window.location.href='request.html'">Submit Request</button>
+
     </div>
 
     <div class="help-card">
@@ -370,7 +423,8 @@
       </div>
       <h4>Live Chat Support</h4>
       <p>Chat with a trained peer counselor or AI assistant for immediate support.</p>
-      <button onclick="window.open('chatbot.html', '_blank')">Start Chat</button>
+      <button onclick="window.location.href='chatbot.html'">Start Chat</button>
+
 
 
     </div>
@@ -384,7 +438,9 @@
       </div>
       <h4>Professional Counselors</h4>
       <p>Connect with licensed counselors and mental health professionals.</p>
-      <button>View Contacts</button>
+      <button onclick="window.location.href='counselor.html'">View Contacts</button>
+
+  
     </div>
 
     <div class="help-card urgent">
