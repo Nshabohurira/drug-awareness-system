@@ -3,398 +3,294 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Learning Center (HTML/CSS/JS)</title>
+<title>Learning Center</title>
 <style>
+/* Root variables */
+:root{
+  --bg:#f6f9ff;
+  --card:#ffffff;
+  --muted:#6b7280;
+  --primary:#3b82f6;
+  --accent:#f97316;
+  --success:#10b981;
+  --danger:#ef4444;
+  --purple:#7c3aed;
+  --border:#e6edf8;
+  --shadow: 0 6px 18px rgba(16,24,40,0.06);
+  --max-width:1180px;
+  --radius:12px;
+}
 
-    header {
-      background: #4E54C8;
-      background: linear-gradient(135deg, #4E54C8, #8F94FB);
-      padding: 1rem 5%;
-      color: #fff;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background:var(--bg);
+  color:#0f172a;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  padding-top:70px; /* space for fixed nav */
+}
 
-    header h1 {
-      font-size: 1.5rem;
-    }
+/* Fixed top nav */
+header nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(135deg, #4E54C8, #8F94FB);
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 5%;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.12);
+  z-index: 1000;
+}
 
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 1.2rem;
-    }
+/* Nav list */
+nav ul {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
 
-    nav a {
-      color: #fff;
-      text-decoration: none;
-      font-weight: bold;
-      transition: color 0.3s ease;
-    }
+/* Nav links */
+nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 6px;
+  transition: background 0.3s, color 0.3s;
+}
+nav a:hover {
+  background: rgba(255,255,255,0.15);
+  color: #ffeb3b;
+}
 
-    nav a:hover {
-      color: #ffeb3b;
-    }
+/* Hamburger */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  cursor: pointer;
+}
+.nav-toggle span {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background: #fff;
+  border-radius: 3px;
+}
 
-  :root{
-    --bg:#f6f9ff;
-    --card:#ffffff;
-    --muted:#6b7280;
-    --primary:#3b82f6; /* blue */
-    --accent:#f97316;  /* orange */
-    --success:#10b981; /* green */
-    --danger:#ef4444;  /* red */
-    --purple:#7c3aed;
-    --border:#e6edf8;
-    --shadow: 0 6px 18px rgba(16,24,40,0.06);
-    --max-width:1180px;
-    --radius:12px;
+/* Responsive */
+@media(max-width:720px) {
+  nav ul {
+    display: none;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background: #4E54C8;
+    flex-direction: column;
+    gap: 0;
+    padding: 10px 0;
   }
-
-  *{box-sizing:border-box}
-  body{
-    margin:0;
-    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-    background:var(--bg);
-    color:#0f172a;
-    -webkit-font-smoothing:antialiased;
-    -moz-osx-font-smoothing:grayscale;
+  nav ul.active {
+    display: flex;
   }
-
-  /* Header / hero */
-  .hero{
-    background: linear-gradient(90deg, rgba(59,130,246,0.12), rgba(124,58,237,0.07));
-    padding:48px 20px;
-    text-align:center;
-    border-bottom:1px solid var(--border);
+  nav li a {
+    padding: 12px 20px;
+    border-radius: 0;
   }
-  .hero .inner{max-width:var(--max-width);margin:0 auto;}
-  .hero h1{font-size:28px;margin:0 0 8px;font-weight:700;color:var(--primary)}
-  .hero p{margin:0;color:var(--muted);font-size:15px}
-
-  /* Search area */
-  .search-wrap{max-width:900px;margin:28px auto;padding:0 20px}
-  .search{
-    position:relative;
-    display:block;
+  .nav-toggle {
+    display: flex;
   }
-  .search svg{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--muted);width:18px;height:18px}
-  .search input{
-    width:100%;
-    padding:12px 14px 12px 42px;
-    border-radius:10px;
-    border:1px solid var(--border);
-    font-size:15px;
-    outline:none;
-    background:var(--card);
-    box-shadow:0 2px 6px rgba(15,23,42,0.03);
-  }
-  .search input:focus{box-shadow:0 6px 20px rgba(59,130,246,0.12);border-color:rgba(59,130,246,0.6)}
+}
 
-  /* Topics grid */
-  .topics { max-width:var(--max-width); margin:24px auto; padding:0 20px 36px; }
-  .grid { display:grid; gap:18px; grid-template-columns: repeat(1, 1fr); }
-  @media(min-width:720px){ .grid{ grid-template-columns: repeat(2, 1fr); } }
-  @media(min-width:1040px){ .grid{ grid-template-columns: repeat(3, 1fr); } }
 
-  .card {
-    background:var(--card);
-    border-radius:var(--radius);
-    padding:18px;
-    box-shadow:var(--shadow);
-    border:1px solid transparent;
-    transition: transform .22s ease, box-shadow .22s ease, border-color .22s;
-    display:flex;
-    flex-direction:column;
-    justify-content:space-between;
-    min-height:170px;
-    cursor:pointer;
-  }
-  .card:hover{ transform:translateY(-6px); box-shadow:0 12px 30px rgba(16,24,40,0.10); border-color: rgba(59,130,246,0.08) }
 
-  .card-head { display:flex; gap:14px; align-items:flex-start; }
-  .badge {
-    width:52px; height:52px; border-radius:12px; display:flex; align-items:center; justify-content:center;
-    color:#fff; font-size:22px; flex:0 0 52px;
-    box-shadow: 0 6px 18px rgba(2,6,23,0.06);
-  }
-  .badge.blue{ background: linear-gradient(180deg, #3b82f6, #2563eb); }
-  .badge.green{ background: linear-gradient(180deg, #10b981, #059669); }
-  .badge.purple{ background: linear-gradient(180deg, #7c3aed, #6d28d9); }
-  .badge.red{ background: linear-gradient(180deg, #ef4444, #dc2626); }
-  .badge.orange{ background: linear-gradient(180deg, #fb923c, #f97316); }
+/* Hero */
+.hero{
+  background: linear-gradient(90deg, rgba(59,130,246,0.12), rgba(124,58,237,0.07));
+  padding:48px 20px;
+  text-align:center;
+  border-bottom:1px solid var(--border);
+}
+.hero .inner{max-width:var(--max-width);margin:0 auto;}
+.hero h1{font-size:28px;margin:0 0 8px;font-weight:700;color:var(--primary)}
+.hero p{margin:0;color:var(--muted);font-size:15px}
 
-  .card-title { font-weight:600; margin:0; font-size:16px; color:#0b1220; }
-  .card-desc { margin:10px 0 18px; color:var(--muted); font-size:14px; line-height:1.45; }
+/* Search area */
+.search-wrap{max-width:900px;margin:28px auto;padding:0 20px}
+.search{ position:relative; display:block; }
+.search svg{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--muted);width:18px;height:18px}
+.search input{ width:100%; padding:12px 14px 12px 42px; border-radius:10px; border:1px solid var(--border); font-size:15px; outline:none; background:var(--card); box-shadow:0 2px 6px rgba(15,23,42,0.03); }
+.search input:focus{box-shadow:0 6px 20px rgba(59,130,246,0.12);border-color:rgba(59,130,246,0.6)}
 
-  .learn-more { color:var(--primary); font-weight:600; text-decoration:none; font-size:14px; align-self:flex-start; transition: opacity .15s }
-  .learn-more:hover{ opacity:.85; text-decoration:underline }
+/* Topics grid */
+.topics { max-width:var(--max-width); margin:24px auto; padding:0 20px 36px; }
+.grid { display:grid; gap:18px; grid-template-columns: repeat(1, 1fr); }
+@media(min-width:720px){ .grid{ grid-template-columns: repeat(2, 1fr); } }
+@media(min-width:1040px){ .grid{ grid-template-columns: repeat(3, 1fr); } }
+.card { background:var(--card); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow); border:1px solid transparent; transition: transform .22s ease, box-shadow .22s ease, border-color .22s; display:flex; flex-direction:column; justify-content:space-between; min-height:170px; cursor:pointer; }
+.card:hover{ transform:translateY(-6px); box-shadow:0 12px 30px rgba(16,24,40,0.10); border-color: rgba(59,130,246,0.08) }
+.card-head { display:flex; gap:14px; align-items:flex-start; }
+.badge { width:52px; height:52px; border-radius:12px; display:flex; align-items:center; justify-content:center; color:#fff; font-size:22px; flex:0 0 52px; box-shadow: 0 6px 18px rgba(2,6,23,0.06); }
+.badge.blue{ background: linear-gradient(180deg, #3b82f6, #2563eb); }
+.badge.green{ background: linear-gradient(180deg, #10b981, #059669); }
+.badge.purple{ background: linear-gradient(180deg, #7c3aed, #6d28d9); }
+.badge.red{ background: linear-gradient(180deg, #ef4444, #dc2626); }
+.badge.orange{ background: linear-gradient(180deg, #fb923c, #f97316); }
+.card-title { font-weight:600; margin:0; font-size:16px; color:#0b1220; }
+.card-desc { margin:10px 0 18px; color:var(--muted); font-size:14px; line-height:1.45; }
+.learn-more { color:var(--primary); font-weight:600; text-decoration:none; font-size:14px; align-self:flex-start; transition: opacity .15s }
+.learn-more:hover{ opacity:.85; text-decoration:underline }
 
-  /* Empty state message */
-  .empty {
-    grid-column: 1 / -1;
-    text-align:center;
-    padding:38px 20px;
-    color:var(--muted);
-    background:linear-gradient(180deg, #ffffff, #fbfdff);
-    border-radius:10px;
-    border:1px dashed #e6eefc;
-  }
+/* Empty state message */
+.empty { grid-column: 1 / -1; text-align:center; padding:38px 20px; color:var(--muted); background:linear-gradient(180deg, #ffffff, #fbfdff); border-radius:10px; border:1px dashed #e6eefc; }
 
-  /* Support / Resources CTA (like your Additional Resources) */
-  .support {
-    max-width:85%;
-    margin:30px auto 80px;
-    background: #b2dbf5ff;
-    border-radius:12px;
-    border:1px solid var(--border);
-    padding:45px;
-    box-shadow: 0 8px 20px rgba(2,6,23,0.04);
-    border-left: 2px solid #3774f8ff;
-  }
-  .support h3{ margin:0 0 8px; font-size:20px; color:#0f172a }
-  .support p{ margin:0 0 16px; color:var(--muted); }
-  .support .btns{ display:flex; gap:12px; flex-wrap:wrap; }
-  .btn{
-    padding:10px 16px; border-radius:10px; font-weight:600; cursor:pointer; border:none; font-size:15px;
-  }
-  .btn.primary { background:var(--primary); color:#fff; box-shadow: 0 6px 18px rgba(59,130,246,0.12); }
-  .btn.primary:hover { filter:brightness(.95) }
-  .btn.ghost { background:#fff; border:1px solid rgba(15,23,42,0.06); color:#0b1220 }
-  .btn.ghost:hover { background: #f8fafc }
-
-  /* small details */
-  .sr-only { position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden; }
+/* Support / Resources CTA */
+.support { max-width:85%; margin:30px auto 80px; background: #b2dbf5ff; border-radius:12px; border:1px solid var(--border); padding:45px; box-shadow: 0 8px 20px rgba(2,6,23,0.04); border-left: 2px solid #3774f8ff; }
+.support h3{ margin:0 0 8px; font-size:20px; color:#0f172a }
+.support p{ margin:0 0 16px; color:var(--muted); }
+.support .btns{ display:flex; gap:12px; flex-wrap:wrap; }
+.btn{ padding:10px 16px; border-radius:10px; font-weight:600; cursor:pointer; border:none; font-size:15px; }
+.btn.primary { background:var(--primary); color:#fff; box-shadow: 0 6px 18px rgba(59,130,246,0.12); }
+.btn.primary:hover { filter:brightness(.95) }
+.btn.ghost { background:#fff; border:1px solid rgba(15,23,42,0.06); color:#0b1220 }
+.btn.ghost:hover { background: #f8fafc }
 
 /* Footer */
-    footer {
-      background: #1f2937;
-      color: #f9fafb;
-      padding: 50px 20px 20px;
-      margin-top: 40px;
-    }
+footer { background: #1f2937; color: #f9fafb; padding: 50px 20px 20px; margin-top: 40px; }
+.footer-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; max-width: 1200px; margin: auto; }
+.footer-brand h2 { color: #4DA6FF; margin-bottom: 10px; }
+.footer-links h3, .footer-contact h3, .footer-social h3 { margin-bottom: 15px; color: #FFE066; }
+.footer-links ul { list-style: none; }
+.footer-links ul li { margin-bottom: 10px; }
+.footer-links ul li a { text-decoration: none; color: #f9fafb; transition: color 0.3s; }
+.footer-links ul li a:hover { color: #6EE7B7; }
+.footer-contact a { color: #4DA6FF; text-decoration: none; }
+.footer-contact a:hover { text-decoration: underline; }
+.footer-social a { margin-right: 15px; display: inline-block; transition: transform 0.3s; color: #f9fafb; }
+.footer-social a:hover { transform: scale(1.2); color: #6EE7B7; }
+.footer-bottom { text-align: center; padding-top: 20px; border-top: 1px solid #374151; margin-top: 30px; font-size: 0.9rem; color: #9ca3af; }
 
-    .footer-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 30px;
-      max-width: 1200px;
-      margin: auto;
-    }
+/* Social SVG styling */
+.footer-social svg { width: 24px; height: 24px; fill: currentColor; }
 
-    .footer-brand h2 {
-      color: #4DA6FF;
-      margin-bottom: 10px;
-    }
+/* Accessibility */
+.sr-only { position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden; }
 
-    .footer-links h3,
-    .footer-contact h3,
-    .footer-social h3 {
-      margin-bottom: 15px;
-      color: #FFE066;
-    }
-
-    .footer-links ul {
-      list-style: none;
-    }
-
-    .footer-links ul li {
-      margin-bottom: 10px;
-    }
-
-    .footer-links ul li a {
-      text-decoration: none;
-      color: #f9fafb;
-      transition: color 0.3s;
-    }
-
-    .footer-links ul li a:hover {
-      color: #6EE7B7;
-    }
-
-    .footer-contact a {
-      color: #4DA6FF;
-      text-decoration: none;
-    }
-
-    .footer-contact a:hover {
-      text-decoration: underline;
-    }
-
-    .footer-social a {
-      margin-right: 15px;
-      display: inline-block;
-      transition: transform 0.3s;
-      color: #f9fafb;
-    }
-
-    .footer-social a:hover {
-      transform: scale(1.2);
-      color: #6EE7B7;
-    }
-
-    .footer-bottom {
-      text-align: center;
-      padding-top: 20px;
-      border-top: 1px solid #374151;
-      margin-top: 30px;
-      font-size: 0.9rem;
-      color: #9ca3af;
-    }
-
-    /* Social SVG styling */
-    .footer-social svg {
-      width: 24px;
-      height: 24px;
-      fill: currentColor;
-    }
 </style>
 </head>
 <body>
 
-    <header>
-    <h1>MUBS Awareness Hub</h1>
-    <nav>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="learn.html">Learn</a></li>
-        <li><a href="help.html">Get Help</a></li>
-        <li><a href="community.html">Community</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <!-- HERO -->
-  <header class="hero">
-    <div class="inner">
-      <h1>Learning Center</h1>
-      <p>Educate yourself with evidence-based information about drugs, prevention, and wellness</p>
+<header>
+  <nav>
+    <h1 style="color:#fff; font-size:20px;">SafeSpace Hub</h1>
+    <div class="nav-toggle" id="navToggle">
+      <span></span>
+      <span></span>
+      <span></span>
     </div>
-  </header>
+    <ul id="navMenu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="learn.html">Learn</a></li>
+      <li><a href="help.html">Get Help</a></li>
+      <li><a href="community.html">Community</a></li>
+    </ul>
+  </nav>
+</header>
 
-  <!-- SEARCH -->
-  <div class="search-wrap">
-    <label class="sr-only" for="searchInput">Search topics</label>
-    <div class="search">
-      <!-- inline search icon (magnifier) -->
-      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-        <path fill="currentColor" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16a6.471 6.471 0 004.23-1.57l.27.28v.79L20 21.5 21.5 20l-6-6zM10 15a5 5 0 110-10 5 5 0 010 10z"/>
-      </svg>
-      <input id="searchInput" type="search" placeholder="Search for topics, drugs, or information..." aria-label="Search topics">
+<!-- HERO -->
+<header class="hero">
+  <div class="inner">
+    <h1>Learning Center</h1>
+    <p>Educate yourself with evidence-based information about drugs, prevention, and wellness</p>
+  </div>
+</header>
+
+<!-- SEARCH -->
+<div class="search-wrap">
+  <label class="sr-only" for="searchInput">Search topics</label>
+  <div class="search">
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path fill="currentColor" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16a6.471 6.471 0 004.23-1.57l.27.28v.79L20 21.5 21.5 20l-6-6zM10 15a5 5 0 110-10 5 5 0 010 10z"/>
+    </svg>
+    <input id="searchInput" type="search" placeholder="Search for topics, drugs, or information..." aria-label="Search topics">
+  </div>
+</div>
+
+<!-- TOPICS -->
+<main class="topics" id="topics">
+  <div class="grid" id="topicsGrid"></div>
+</main>
+
+<!-- SUPPORT / ADDITIONAL RESOURCES -->
+<section class="support" aria-labelledby="supportTitle">
+  <h3 id="supportTitle">Need More Information?</h3>
+  <p>Our learning resources are continuously updated with the latest research and evidence-based information.</p>
+  <div class="btns">
+    <button class="btn primary" id="suggestBtn">Suggest a Topic</button>
+    <button class="btn ghost" id="downloadBtn">Download PDF Guides</button>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-container">
+    <div class="footer-brand">
+      <h2>AwarenessHub</h2>
+      <p>Breaking the stigma, building awareness among students.</p>
+    </div>
+    <div class="footer-links">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Learn</a></li>
+        <li><a href="#">Get Help</a></li>
+        <li><a href="#">Community</a></li>
+        <li><a href="#">Events</a></li>
+      </ul>
+    </div>
+    <div class="footer-contact">
+      <h3>Contact Us</h3>
+      <p>Email: <a href="mailto:support@mubsawareness.com">support@mubsawareness.com</a></p>
+      <p>Tel: +256 700 000000</p>
+      <p>Kampala, Uganda</p>
+    </div>
+    <div class="footer-social">
+      <h3>Connect</h3>
+      <a href="#" aria-label="Facebook"> <!-- SVG here --> </a>
+      <a href="#" aria-label="Twitter"> <!-- SVG here --> </a>
+      <a href="#" aria-label="Instagram"> <!-- SVG here --> </a>
+      <a href="#" aria-label="LinkedIn"> <!-- SVG here --> </a>
     </div>
   </div>
-
-  <!-- TOPICS -->
-  <main class="topics" id="topics">
-    <div class="grid" id="topicsGrid">
-      <!-- cards injected here -->
-    </div>
-  </main>
-
-  <!-- SUPPORT / ADDITIONAL RESOURCES -->
-  <section class="support" aria-labelledby="supportTitle">
-    <h3 id="supportTitle">Need More Information?</h3>
-    <p>Our learning resources are continuously updated with the latest research and evidence-based information.</p>
-    <div class="btns">
-      <button class="btn primary" id="suggestBtn">Suggest a Topic</button>
-      <button class="btn ghost" id="downloadBtn">Download PDF Guides</button>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <div class="footer-container">
-      <!-- Branding -->
-      <div class="footer-brand">
-        <h2>AwarenessHub</h2>
-        <p>Breaking the stigma, building awareness among students.</p>
-      </div>
-
-      <!-- Quick Links -->
-      <div class="footer-links">
-        <h3>Quick Links</h3>
-        <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Learn</a></li>
-          <li><a href="#">Get Help</a></li>
-          <li><a href="#">Community</a></li>
-          <li><a href="#">Events</a></li>
-        </ul>
-      </div>
-
-      <!-- Contact -->
-      <div class="footer-contact">
-        <h3>Contact Us</h3>
-        <p>Email: <a href="mailto:support@mubsawareness.com">support@mubsawareness.com</a></p>
-        <p>Tel: +256 700 000000</p>
-        <p>Kampala, Uganda</p>
-      </div>
-
-      <!-- Social -->
-      <div class="footer-social">
-        <h3>Connect</h3>
-        <a href="#" aria-label="Facebook">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22.675 0h-21.35C.597 0 0 .597 0 1.333v21.333C0 23.403.597 24 1.325 24h11.497v-9.294H9.691V11.08h3.131V8.414c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.464.099 2.796.143v3.24h-1.918c-1.504 0-1.797.715-1.797 1.764v2.308h3.587l-.467 3.626h-3.12V24h6.116C23.403 24 24 23.403 24 22.667V1.333C24 .597 23.403 0 22.675 0z"/></svg>
-        </a>
-        <a href="#" aria-label="Twitter">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M24 4.557a9.93 9.93 0 01-2.828.775 4.932 4.932 0 002.165-2.724 9.864 9.864 0 01-3.127 1.195A4.918 4.918 0 0016.616 3c-2.717 0-4.924 2.206-4.924 4.924 0 .386.044.762.127 1.124C7.728 8.856 4.1 6.884 1.671 3.905a4.822 4.822 0 00-.666 2.475c0 1.708.869 3.213 2.188 4.096a4.904 4.904 0 01-2.229-.616v.062c0 2.385 1.693 4.374 3.946 4.827a4.935 4.935 0 01-2.224.085c.627 1.956 2.444 3.379 4.6 3.421A9.868 9.868 0 010 19.54 13.93 13.93 0 007.548 22c9.056 0 14.01-7.496 14.01-13.986 0-.213-.005-.425-.014-.636A9.935 9.935 0 0024 4.557z"/></svg>
-        </a>
-        <a href="#" aria-label="Instagram">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.35 3.608 1.325.975.975 1.263 2.242 1.325 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.35 2.633-1.325 3.608-.975.975-2.242 1.263-3.608 1.325-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.35-3.608-1.325-.975-.975-1.263-2.242-1.325-3.608C2.175 15.646 2.163 15.266 2.163 12s.012-3.584.07-4.85c.062-1.366.35-2.633 1.325-3.608.975-.975 2.242-1.263 3.608-1.325C8.416 2.175 8.796 2.163 12 2.163zm0-2.163C8.741 0 8.332.012 7.052.07 5.775.128 4.638.417 3.678 1.377 2.718 2.337 2.429 3.474 2.371 4.751 2.313 6.031 2.3 6.441 2.3 12c0 5.559.012 5.969.07 7.249.058 1.277.347 2.414 1.307 3.374.96.96 2.097 1.249 3.374 1.307 1.28.058 1.689.07 7.249.07s5.969-.012 7.249-.07c1.277-.058 2.414-.347 3.374-1.307.96-.96 1.249-2.097 1.307-3.374.058-1.28.07-1.689.07-7.249s-.012-5.969-.07-7.249c-.058-1.277-.347-2.414-1.307-3.374-.96-.96-2.097-1.249-3.374-1.307C17.969.012 17.559 0 12 0z"/><path d="M12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zm0 10.162a3.999 3.999 0 110-7.998 3.999 3.999 0 010 7.998zM18.406 4.594a1.44 1.44 0 100 2.88 1.44 1.44 0 000-2.88z"/></svg>
-        </a>
-        <a href="#" aria-label="LinkedIn">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.225.792 24 1.771 24h20.451C23.2 24 24 23.225 24 22.271V1.729C24 .774 23.2 0 22.225 0zM7.118 20.452H3.556V9h3.562v11.452zM5.337 7.56c-1.144 0-2.067-.926-2.067-2.067 0-1.143.923-2.067 2.067-2.067 1.141 0 2.067.924 2.067 2.067 0 1.141-.926 2.067-2.067 2.067zM20.452 20.452h-3.562v-5.604c0-1.336-.027-3.055-1.862-3.055-1.864 0-2.15 1.455-2.15 2.957v5.702H9.316V9h3.418v1.561h.048c.477-.9 1.64-1.85 3.376-1.85 3.608 0 4.274 2.373 4.274 5.456v6.285z"/></svg>
-        </a>
-      </div>
-    </div>
-
-    <div class="footer-bottom">
-      <p>&copy; 2025 AwarenessHub | All Rights Reserved</p>
-    </div>
-  </footer>
+  <div class="footer-bottom">
+    <p>&copy; 2025 AwarenessHub | All Rights Reserved</p>
+  </div>
+</footer>
 
 <script>
-/* Topics data (mirrors your React data closely) */
+/* Topics data */
 const learningTopics = [
-  {
-    title: 'Drug Types & Effects',
-    description: 'Learn about different substances, their short and long-term effects on the body and mind.',
-    badge:'📚',
-    color:'blue'
-  },
-  {
-    title: 'Prevention Tips',
-    description: 'Practical strategies to avoid drug use and maintain a healthy lifestyle.',
-    badge:'🛡️',
-    color:'green'
-  },
-  {
-    title: 'Mental Health & Drugs',
-    description: 'Understand the connection between mental health and substance use.',
-    badge:'🧠',
-    color:'purple'
-  },
-  {
-    title: 'Legal Consequences in Uganda',
-    description: 'Know the legal implications of drug possession and use in Uganda.',
-    badge:'⚖️',
-    color:'red'
-  },
-  {
-    title: 'Take a Quiz',
-    description: 'Test your knowledge about drugs and addiction with interactive quizzes.',
-    badge:'❓',
-    color:'orange'
-  }
+  { title: 'Drug Types & Effects', description: 'Learn about different substances, their short and long-term effects on the body and mind.', badge:'📚', color:'blue' },
+  { title: 'Prevention Tips', description: 'Practical strategies to avoid drug use and maintain a healthy lifestyle.', badge:'🛡️', color:'green' },
+  { title: 'Mental Health & Drugs', description: 'Understand the connection between mental health and substance use.', badge:'🧠', color:'purple' },
+  { title: 'Legal Consequences in Uganda', description: 'Know the legal implications of drug possession and use in Uganda.', badge:'⚖️', color:'red' },
+  { title: 'Take a Quiz', description: 'Test your knowledge about drugs and addiction with interactive quizzes.', badge:'❓', color:'orange' }
 ];
 
 const grid = document.getElementById('topicsGrid');
 const searchInput = document.getElementById('searchInput');
 
-/* Render function */
 function renderTopics(list, filterTerm='') {
-  grid.innerHTML = ''; // clear
+  grid.innerHTML = '';
   if(list.length === 0) {
     const empty = document.createElement('div');
     empty.className = 'empty';
@@ -402,14 +298,13 @@ function renderTopics(list, filterTerm='') {
     grid.appendChild(empty);
     return;
   }
-
   list.forEach(topic=>{
     const card = document.createElement('article');
     card.className = 'card';
     card.tabIndex = 0;
     card.innerHTML = `
       <div class="card-head">
-        <div class="badge ${'badge-'+topic.color}">${topic.badge}</div>
+        <div class="badge badge-${topic.color}">${topic.badge}</div>
         <div>
           <div class="card-title">${topic.title}</div>
           <div class="card-desc">${topic.description}</div>
@@ -417,9 +312,7 @@ function renderTopics(list, filterTerm='') {
       </div>
       <a href="#" class="learn-more" aria-label="Learn more about ${escapeHtml(topic.title)}">Learn more →</a>
     `;
-    // click behaviour (placeholder)
     card.addEventListener('click', (e)=>{
-      // if user clicks the card or the Learn more link, we can open a modal or navigate — placeholder:
       e.preventDefault();
       alert('Open topic: ' + topic.title);
     });
@@ -427,31 +320,25 @@ function renderTopics(list, filterTerm='') {
   });
 }
 
-/* sanitize for innerText usage */
-function escapeHtml(str){
-  return String(str).replace(/[&<>"']/g, function(m){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]});
-}
+function escapeHtml(str){ return String(str).replace(/[&<>"']/g, function(m){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]}); }
 
-/* initial render */
 renderTopics(learningTopics);
 
-/* filtering */
 searchInput.addEventListener('input', (e)=>{
   const q = e.target.value.trim().toLowerCase();
-  const filtered = learningTopics.filter(t =>
-    t.title.toLowerCase().includes(q) ||
-    t.description.toLowerCase().includes(q)
-  );
+  const filtered = learningTopics.filter(t => t.title.toLowerCase().includes(q) || t.description.toLowerCase().includes(q) );
   renderTopics(filtered, e.target.value);
 });
 
 /* Buttons demo handlers */
-document.getElementById('suggestBtn').addEventListener('click', ()=> {
-  alert('Suggestion form would open (placeholder)');
-});
-document.getElementById('downloadBtn').addEventListener('click', ()=> {
-  alert('PDF download would start (placeholder)');
-});
+document.getElementById('suggestBtn').addEventListener('click', ()=> { alert('Suggestion form would open (placeholder)'); });
+document.getElementById('downloadBtn').addEventListener('click', ()=> { alert('PDF download would start (placeholder)'); });
+
+/* Hamburger toggle */
+const navToggle = document.getElementById('navToggle');
+const navMenu = document.getElementById('navMenu');
+navToggle.addEventListener('click', () => { navMenu.classList.toggle('active'); });
 </script>
+
 </body>
 </html>
