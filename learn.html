@@ -84,6 +84,18 @@ nav a:hover {
   height: 3px;
   background: #fff;
   border-radius: 3px;
+  transition: all 0.3s ease; /* animation */
+}
+
+/* Hamburger active animation */
+.nav-toggle.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+.nav-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+.nav-toggle.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
 }
 
 /* Responsive */
@@ -110,8 +122,6 @@ nav a:hover {
     display: flex;
   }
 }
-
-
 
 /* Hero */
 .hero{
@@ -334,10 +344,13 @@ searchInput.addEventListener('input', (e)=>{
 document.getElementById('suggestBtn').addEventListener('click', ()=> { alert('Suggestion form would open (placeholder)'); });
 document.getElementById('downloadBtn').addEventListener('click', ()=> { alert('PDF download would start (placeholder)'); });
 
-/* Hamburger toggle */
+/* Hamburger toggle with animation */
 const navToggle = document.getElementById('navToggle');
 const navMenu = document.getElementById('navMenu');
-navToggle.addEventListener('click', () => { navMenu.classList.toggle('active'); });
+navToggle.addEventListener('click', () => {
+  navMenu.classList.toggle('active');
+  navToggle.classList.toggle('active'); // triggers the animation
+});
 </script>
 
 </body>
