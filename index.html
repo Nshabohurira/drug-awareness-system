@@ -5,125 +5,165 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Drug Abuse Awareness | MUBS</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* ---------- Base ---------- */
+    :root {
+      --nav-g1: #4E54C8;
+      --nav-g2: #8F94FB;
+      --white: #ffffff;
+      --text: #1f2937;
     }
 
+    * { box-sizing: border-box; }
+    html,body { height: 100%; }
     body {
-      line-height: 1.6;
-      background: #f5f7fa;
-      color: #333;
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: #f9fafb;
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
-    header {
+    /* ---------- Top fixed nav ---------- */
+    header nav {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
-      background: linear-gradient(135deg, #4E54C8, #8F94FB);
-      padding: 0.5rem 5%;
-      color: #fff;
+      background: linear-gradient(135deg, var(--nav-g1), var(--nav-g2));
+      color: var(--white);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      z-index: 1000;
-      box-sizing: border-box;
+      padding: 12px 5%;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.12);
+      z-index: 1200;
     }
 
-    header h1 {
-      font-size: 1.5rem;
-    }
-
-    nav ul { 
-      list-style: none;
+    /* brand/title */
+    header nav .brand {
       display: flex;
-      gap: 1.2rem;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      font-size: 1.125rem;
+      color: var(--white);
+    }
+
+    /* nav list (desktop) */
+    nav ul {
+      display: flex;
+      gap: 10px;
+      list-style: none;
+      margin: 0;
+      padding-left: 20px;
+      align-items: center;
+      padding: 20px;
     }
 
     nav a {
-      color: #fff;
+      color: var(--white);
       text-decoration: none;
-      font-weight: bold;
-      transition: color 0.3s ease;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 6px;
+      transition: background 0.25s, color 0.25s;
+      white-space: nowrap;
     }
+    nav a:hover { background: rgba(255,255,255,0.12); color: #ffeb3b; }
 
-    nav a:hover {
-      color: #ffeb3b;
-    }
-
-    /* Hamburger */
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      justify-content: space-between;
-      width: 28px;
-      height: 22px;
+    /* ---------- Hamburger toggle (hidden on desktop) ---------- */
+    .nav-toggle {
+      display: none;              /* shown only under media query */
+      -webkit-tap-highlight-color: transparent;
+      border: 0;
+      background: transparent;
+      padding: 6px;
       cursor: pointer;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      position: relative;
+      z-index: 1300;             /* above dropdown so it remains visible */
+      flex-direction: column; /* ✅ stack bars vertically */
+        
     }
 
-    .hamburger div {
+        .nav-toggle span {
+      display: block;
+      width: 28px;
       height: 3px;
       background: #fff;
-      border-radius: 2px;
-      transition: all 0.3s ease;
+      border-radius: 3px;
     }
 
-    /* Hamburger → X animation */
-    .hamburger.active div:nth-child(1) {
-      transform: rotate(45deg) translate(5px, 5px);
+    .nav-toggle .bar {
+      display: block;
+      width: 26px;
+      height: 3px;
+      background: var(--white);
+      border-radius: 3px;
+      transform-origin: center;
+      transition: transform 0.22s ease, opacity 0.18s ease;
     }
 
-    .hamburger.active div:nth-child(2) {
-      opacity: 0;
-    }
+    /* ---------- Mobile behaviour ---------- */
+    @media (max-width: 720px) {
+      /* show hamburger */
+      .nav-toggle { display: flex; }
 
-    .hamburger.active div:nth-child(3) {
-      transform: rotate(-45deg) translate(5px, -5px);
-    }
+      /* keep brand left, toggle at right */
+      header nav { padding: 12px 5%; }
+      header nav .brand { font-size: 1rem; }
 
-    /* Mobile dropdown menu */
-    .mobile-nav {
-      display: none;
-      flex-direction: column;
-      position: absolute;
-      top: 70px;
-      right: 5%;
-      background: #4E54C8;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-      z-index: 999;
-    }
-
-    .mobile-nav a {
-      padding: 12px 20px;
-      border-bottom: 1px solid rgba(255,255,255,0.2);
-      text-align: left;
-      color: #fff;
-      font-weight: bold;
-    }
-
-    .mobile-nav a:hover {
-      background: #8F94FB;
-      color: #ffeb3b;
-    }
-
-    .mobile-nav.show {
-      display: flex;
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
+      /* make the nav menu an absolute dropdown */
       nav ul {
-        display: none;
+        position: absolute;
+        top: calc(100% + 10px);
+        right: 5%;
+        margin: 0;
+        padding: 8px 6px;
+        width: 220px;                    /* control width so it doesn't cover toggle */
+        flex-direction: column;
+        gap: 0;
+        background: linear-gradient(135deg, var(--nav-g1), var(--nav-g2));
+        border-radius: 10px;
+        box-shadow: 0 12px 24px rgba(15,23,42,0.18);
+        transform-origin: top right;
+        transform: scaleY(0);
+        opacity: 0;
+        pointer-events: none;
+        transition: transform 180ms ease, opacity 160ms ease;
+        z-index: 1250;                   /* below .nav-toggle */
       }
-      .hamburger {
-        display: flex;
+
+      nav ul.active {
+        transform: scaleY(1);
+        opacity: 1;
+        pointer-events: auto;
       }
+
+      /* style the list items for mobile */
+      nav li { border-radius: 6px; overflow: hidden; }
+      nav li + li { border-top: 1px solid rgba(255,255,255,0.06); }
+      nav li a { display: block; padding: 12px 14px; font-weight: 700; }
+
+      /* reduce brand spacing on mobile */
+      nav ul { padding: 8px 0; }
     }
+
+    /* ---------- Toggle 'X' animation when open ---------- */
+    .nav-toggle.open .bar:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+    .nav-toggle.open .bar:nth-child(2) {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+    .nav-toggle.open .bar:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
 
     /* Hero section */
     .hero {
@@ -472,29 +512,28 @@
 </head>
 <body>
   <header>
-    <h1>SafeSpace Hub</h1>
     <nav>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="learn.html">Learn</a></li>
-        <li><a href="help.html">Get Help</a></li>
-        <li><a href="community.html">Community</a></li>
+      <div class="brand" aria-hidden="true">
+        <h1 style="color:#fff; font-size:20px; margin:0;">SafeSpace Hub</h1>
+      </div>
+
+      <!-- Hamburger button -->
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navMenu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+
+      <!-- Main nav -->
+      <ul id="navMenu" role="menu" aria-labelledby="navToggle">
+        <li role="none"><a role="menuitem" href="index.html">Home</a></li>
+        <li role="none"><a role="menuitem" href="learn.html">Learn</a></li>
+        <li role="none"><a role="menuitem" href="help.html">Get Help</a></li>
+        <li role="none"><a role="menuitem" href="community.html">Community</a></li>
       </ul>
     </nav>
-    <div class="hamburger" onclick="toggleMenu()">
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
   </header>
 
-  <!-- Mobile Menu -->
-  <div class="mobile-nav" id="mobileMenu">
-    <a href="index.html">Home</a>
-    <a href="learn.html">Learn</a>
-    <a href="help.html">Get Help</a>
-    <a href="community.html">Community</a>
-  </div>
 
   <!-- Hero Section -->
   <section class="hero">
@@ -608,10 +647,59 @@
   </footer>
 
   <script>
-    function toggleMenu() {
-      document.getElementById("mobileMenu").classList.toggle("show");
-      document.querySelector(".hamburger").classList.toggle("active");
-    }
+    (function () {
+      const navToggle = document.getElementById('navToggle');
+      const navMenu = document.getElementById('navMenu');
+
+      function closeMenu() {
+        navToggle.classList.remove('open');
+        navMenu.classList.remove('active');
+        navToggle.setAttribute('aria-expanded', 'false');
+      }
+      function openMenu() {
+        navToggle.classList.add('open');
+        navMenu.classList.add('active');
+        navToggle.setAttribute('aria-expanded', 'true');
+      }
+
+      // Toggle on click
+      navToggle.addEventListener('click', function (e) {
+        const isOpen = navMenu.classList.contains('active');
+        if (isOpen) closeMenu();
+        else openMenu();
+
+        // prevent the document click handler from immediately closing it
+        e.stopPropagation();
+      });
+
+      // Close when clicking outside the menu (mobile)
+      document.addEventListener('click', function (e) {
+        // only if mobile and menu is open
+        if (window.innerWidth <= 720 && navMenu.classList.contains('active')) {
+          // if click is outside nav
+          if (!navMenu.contains(e.target) && !navToggle.contains(e.target)) {
+            closeMenu();
+          }
+        }
+      });
+
+      // Close menu on resize to desktop to avoid stuck state
+      window.addEventListener('resize', function () {
+        if (window.innerWidth > 720) {
+          // ensure menu is visible for desktop layout and remove mobile classes
+          navMenu.classList.remove('active');
+          navToggle.classList.remove('open');
+          navToggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+
+      // Keyboard accessibility: Esc closes
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+          closeMenu();
+        }
+      });
+    })();
   </script>
 </body>
 </html>
