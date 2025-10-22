@@ -256,7 +256,7 @@
     }
 
     /* Emergency Button */
-    .emergency-btn {
+    /* .emergency-btn {
       position: fixed;
       bottom: 20px;
       right: 20px;
@@ -280,7 +280,49 @@
       60% { transform: rotate(8deg); }
       75% { transform: rotate(-4deg); }
       100% { transform: rotate(0deg); }
-    }
+    } */
+
+    /* Whatsapp icon syling */
+    .whatsapp-icon {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  width: 60px;
+  height: 60px;
+  background-color: #25D366;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  animation: pulse 2s infinite;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  z-index: 999;
+}
+
+.whatsapp-icon img {
+  width: 35px;
+  height: 35px;
+}
+
+.whatsapp-icon:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.35);
+}
+
+/* Pulse Animation */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6);
+  }
+  70% {
+    box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+  }
+}
+
 
     /* Motivation */
     .motivation {
@@ -543,7 +585,7 @@
       <a href="#">Get Started</a>
     </div>
     <div class="hero-image">
-      <img src="images/hero2.jpg" alt="Awareness Image">
+      <img src="images/african students2.png" alt="Awareness Image">
     </div>
   </section>
 
@@ -572,9 +614,20 @@
   </section>
 
   <!-- Emergency Button -->
-  <a href="tel:+256770772171" class="emergency-btn" title="Get Help Now">
+  <!-- <a href="tel:+256770772171" class="emergency-btn" title="Get Help Now">
       🚨 Emergency Help
-  </a>
+  </a> -->
+
+  <!-- WhatsApp Icon Button -->
+<a href="https://wa.me/+1 123456789?text=Hi%20Safe%20Space%20Hub!%20I%20need%20help" 
+   class="whatsapp-icon" 
+   target="_blank" 
+   title="Chat with Safe Space Hub">
+   <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" 
+        alt="WhatsApp" />
+</a>
+
+
 
   <!-- Motivation Section -->
   <section class="motivation">
