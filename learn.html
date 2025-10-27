@@ -184,7 +184,7 @@
 .search input:focus{box-shadow:0 6px 20px rgba(59,130,246,0.12);border-color:rgba(59,130,246,0.6)}
 
 /* Topics grid */
-.topics { max-width:var(--max-width); margin:24px auto; padding:0 20px 36px; }
+/* .topics { max-width:var(--max-width); margin:24px auto; padding:0 20px 36px; }
 .grid { display:grid; gap:18px; grid-template-columns: repeat(1, 1fr); }
 @media(min-width:720px){ .grid{ grid-template-columns: repeat(2, 1fr); } }
 @media(min-width:1040px){ .grid{ grid-template-columns: repeat(3, 1fr); } }
@@ -202,6 +202,153 @@
 .learn-more { color:var(--primary); font-weight:600; text-decoration:none; font-size:14px; align-self:flex-start; transition: opacity .15s }
 .learn-more:hover{ opacity:.85; text-decoration:underline }
 
+.card {
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  overflow: hidden;
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+}
+
+.card-image img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.card-head {
+  padding: 16px;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.card-title {
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.card-desc {
+  font-size: 0.9rem;
+  color: #555;
+  margin-top: 4px;
+}
+
+.learn-more {
+  text-decoration: none;
+  display: block;
+  text-align: right;
+  color: #4E54C8;
+  font-weight: 600;
+  padding: 8px 16px 16px 0;
+}
+
+.learn-more:hover {
+  color: #8F94FB;
+} 
+
+ /* --- Resource Section --- */
+    .resources {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    /* --- Card --- */
+    .card {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      overflow: hidden;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+    }
+
+    .card img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+    }
+
+    .card-content {
+      padding: 20px;
+    }
+
+    .card-content h3 {
+      font-size: 1.1rem;
+      margin: 0 0 10px;
+      color: #111827;
+    }
+
+    .card-content p {
+      font-size: 0.9rem;
+      line-height: 1.5;
+      color: #475569;
+      margin-bottom: 16px;
+    }
+
+    .meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .tag {
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: lowercase;
+    }
+
+    .tag.alcohol { background: #eef2ff; color: #4f46e5; }
+    .tag.drugs { background: #fce7f3; color: #db2777; }
+    .tag.stress { background: #dcfce7; color: #16a34a; }
+
+    .time {
+      font-size: 0.8rem;
+      color: #64748b;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px 0;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      background: transparent;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    button:hover {
+      background: #4f46e5;
+      color: white;
+      border-color: #4f46e5;
+    }
+
+    /* --- Responsive text --- */
+    @media (max-width: 500px) {
+      .card-content h3 {
+        font-size: 1rem;
+      }
+      .card-content p {
+        font-size: 0.85rem;
+      }
+    }
 /* Empty state message */
 .empty { grid-column: 1 / -1; text-align:center; padding:38px 20px; color:var(--muted); background:linear-gradient(180deg, #ffffff, #fbfdff); border-radius:10px; border:1px dashed #e6eefc; }
 
@@ -283,10 +430,89 @@ footer { background: #1f2937; color: #f9fafb; padding: 50px 20px 20px; margin-to
   </div>
 </div>
 
+
 <!-- TOPICS -->
-<main class="topics" id="topics">
+ <!-- <main class="topics" id="topics">
   <div class="grid" id="topicsGrid"></div>
-</main>
+</main> -->
+
+<!-- resource cards -->
+<section class="resources">
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80" alt="Alcohol Effects">
+      <div class="card-content">
+        <h3>📘 Understanding Alcohol Effects</h3>
+        <p>Learn about how alcohol affects your brain and body, and why moderation matters.</p>
+        <div class="meta">
+          <span class="tag alcohol">alcohol</span>
+          <span class="time">⏱️ 8 min</span>
+        </div>
+        <button>Read More</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=80" alt="Drug Types">
+      <div class="card-content">
+        <h3>🎥 Drug Types and Risks</h3>
+        <p>A comprehensive guide to different drug categories and their health impacts.</p>
+        <div class="meta">
+          <span class="tag drugs">drugs</span>
+          <span class="time">⏱️ 12 min</span>
+        </div>
+        <button>Read More</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=800&q=80" alt="Managing Stress">
+      <div class="card-content">
+        <h3>📘 Managing Stress Without Substances</h3>
+        <p>Healthy coping strategies for university stress and anxiety.</p>
+        <div class="meta">
+          <span class="tag stress">stress</span>
+          <span class="time">⏱️ 15 min</span>
+        </div>
+        <button>Read More</button>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80" alt="Alcohol Effects">
+      <div class="card-content">
+        <h3>📘 Understanding Alcohol Effects</h3>
+        <p>Learn about how alcohol affects your brain and body, and why moderation matters.</p>
+        <div class="meta">
+          <span class="tag alcohol">alcohol</span>
+          <span class="time">⏱️ 8 min</span>
+        </div>
+        <button>Read More</button>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80" alt="Alcohol Effects">
+      <div class="card-content">
+        <h3>📘 Understanding Alcohol Effects</h3>
+        <p>Learn about how alcohol affects your brain and body, and why moderation matters.</p>
+        <div class="meta">
+          <span class="tag alcohol">alcohol</span>
+          <span class="time">⏱️ 8 min</span>
+        </div>
+        <button>Read More</button>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80" alt="Alcohol Effects">
+      <div class="card-content">
+        <h3>📘 Understanding Alcohol Effects</h3>
+        <p>Learn about how alcohol affects your brain and body, and why moderation matters.</p>
+        <div class="meta">
+          <span class="tag alcohol">alcohol</span>
+          <span class="time">⏱️ 8 min</span>
+        </div>
+        <button>Read More</button>
+      </div>
+    </div>
+  </section>
 
 <!-- SUPPORT / ADDITIONAL RESOURCES -->
 <section class="support" aria-labelledby="supportTitle">
@@ -336,12 +562,47 @@ footer { background: #1f2937; color: #f9fafb; padding: 50px 20px 20px; margin-to
 
 <script>
 /* Topics data */
-const learningTopics = [
-  { title: 'Drug Types & Effects', description: 'Learn about different substances, their short and long-term effects on the body and mind.', badge:'📚', color:'blue' },
-  { title: 'Prevention Tips', description: 'Practical strategies to avoid drug use and maintain a healthy lifestyle.', badge:'🛡️', color:'green' },
-  { title: 'Mental Health & Drugs', description: 'Understand the connection between mental health and substance use.', badge:'🧠', color:'purple' },
-  { title: 'Legal Consequences in Uganda', description: 'Know the legal implications of drug possession and use in Uganda.', badge:'⚖️', color:'red' },
-  { title: 'Take a Quiz', description: 'Test your knowledge about drugs and addiction with interactive quizzes.', badge:'❓', color:'orange' }
+<!-- const learningTopics = [
+  { 
+    title: 'Drug Types & Effects', 
+    description: 'Learn about different substances, their short and long-term effects on the body and mind.', 
+    badge:'📚', 
+    color:'blue',
+    image:'https://images.unsplash.com/photo-1607013403439-72e5f8b0942a?auto=format&fit=crop&w=600&q=80',
+    video:'https://www.youtube.com/watch?v=bn9F19Hi1Lk'
+  },
+  { 
+    title: 'Prevention Tips', 
+    description: 'Practical strategies to avoid drug use and maintain a healthy lifestyle.', 
+    badge:'🛡️', 
+    color:'green',
+    image:'https://images.unsplash.com/photo-1603575457032-ef6f57bdbf49?auto=format&fit=crop&w=600&q=80',
+    video:'https://www.youtube.com/watch?v=J4a1zj5aA3k'
+  },
+  { 
+    title: 'Mental Health & Drugs', 
+    description: 'Understand the connection between mental health and substance use.', 
+    badge:'🧠', 
+    color:'purple',
+    image:'image/drugtypes.jpg',
+    video:'https://www.youtube.com/watch?v=1r8hj72bfGo'
+  },
+  { 
+    title: 'Legal Consequences in Uganda', 
+    description: 'Know the legal implications of drug possession and use in Uganda.', 
+    badge:'⚖️', 
+    color:'red',
+    image:'https://images.unsplash.com/photo-1616111529279-2b8b6029f9b9?auto=format&fit=crop&w=600&q=80',
+    video:'https://www.youtube.com/watch?v=lHh5nGcGd3U'
+  },
+  { 
+    title: 'Take a Quiz', 
+    description: 'Test your knowledge about drugs and addiction with interactive quizzes.', 
+    badge:'❓', 
+    color:'orange',
+    image:'https://images.unsplash.com/photo-1603570411141-1cbe9bfe3f4f?auto=format&fit=crop&w=600&q=80',
+    video:'https://www.youtube.com/watch?v=k2xYxY1l7kE'
+  }
 ];
 
 const grid = document.getElementById('topicsGrid');
@@ -356,11 +617,15 @@ function renderTopics(list, filterTerm='') {
     grid.appendChild(empty);
     return;
   }
-  list.forEach(topic=>{
+
+  list.forEach(topic => {
     const card = document.createElement('article');
     card.className = 'card';
     card.tabIndex = 0;
     card.innerHTML = `
+      <div class="card-image">
+        <img src="${topic.image}" alt="${escapeHtml(topic.title)} image" />
+      </div>
       <div class="card-head">
         <div class="badge badge-${topic.color}">${topic.badge}</div>
         <div>
@@ -368,29 +633,28 @@ function renderTopics(list, filterTerm='') {
           <div class="card-desc">${topic.description}</div>
         </div>
       </div>
-      <a href="#" class="learn-more" aria-label="Learn more about ${escapeHtml(topic.title)}">Learn more →</a>
+      <a href="${topic.video}" class="learn-more" target="_blank" aria-label="Learn more about ${escapeHtml(topic.title)}">🎥 Learn more</a>
     `;
-    card.addEventListener('click', (e)=>{
-      e.preventDefault();
-      alert('Open topic: ' + topic.title);
-    });
     grid.appendChild(card);
   });
 }
 
-function escapeHtml(str){ return String(str).replace(/[&<>"']/g, function(m){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]}); }
+function escapeHtml(str){ 
+  return String(str).replace(/[&<>"']/g, function(m){ 
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]; 
+  });
+}
 
 renderTopics(learningTopics);
 
 searchInput.addEventListener('input', (e)=>{
   const q = e.target.value.trim().toLowerCase();
-  const filtered = learningTopics.filter(t => t.title.toLowerCase().includes(q) || t.description.toLowerCase().includes(q) );
+  const filtered = learningTopics.filter(t => 
+    t.title.toLowerCase().includes(q) || 
+    t.description.toLowerCase().includes(q)
+  );
   renderTopics(filtered, e.target.value);
-});
-
-/* Buttons demo handlers */
-document.getElementById('suggestBtn').addEventListener('click', ()=> { alert('Suggestion form would open (placeholder)'); });
-document.getElementById('downloadBtn').addEventListener('click', ()=> { alert('PDF download would start (placeholder)'); });
+}); -->
 
 /* Hamburger toggle with animation */
 (function () {
