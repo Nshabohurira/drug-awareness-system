@@ -225,7 +225,34 @@
       border-radius: 10px;
     }
 
-    /* Features */
+    /* Existance reason */
+    .why-section {
+    background-color: #f9fafb; /* soft light gray background */
+    padding: 40px 20px;
+    text-align: center;
+    font-family: "Segoe UI", Roboto, sans-serif;
+  }
+
+  .why-section .content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .why-section h2 {
+    font-size: 32px;
+    color: #1e293b; /* dark slate gray */
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+
+  .why-section p {
+    font-size: 17px;
+    color: #4b5563; /* medium gray text */
+    line-height: 1.7;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+    /* Features 
     .features {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -254,7 +281,73 @@
     .feature-card h3 {
       margin-bottom: 15px;
       color: #4DA6FF;
+    } */
+     .features {
+    text-align: center;
+    padding: 80px 20px;
+    background-color: white;
+    font-family: "Segoe UI", Roboto, sans-serif;
+  }
+
+  .section-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 50px;
+  }
+
+  .features-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .feature-card {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    padding: 30px 20px;
+    width: 250px;
+    transition: all 0.3s ease;
+  }
+
+  .feature-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+  }
+
+  .feature-card img {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 20px;
+  }
+
+  .feature-card h3 {
+    font-size: 20px;
+    color: #1e293b;
+    margin-bottom: 10px;
+  }
+
+  .feature-card p {
+    color: #4b5563;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  @media (max-width: 768px) {
+    .features-container {
+      flex-direction: column;
+      align-items: center;
     }
+
+    .feature-card {
+      width: 80%;
+      max-width: 350px;
+    }
+  }
 
     /* Emergency Button */
     /* .emergency-btn {
@@ -590,29 +683,47 @@
     </div>
   </section>
 
-  <!-- Features Section -->
+<!-- WHY THIS PLATFORM EXISTS SECTION -->
+<section class="why-section">
+  <div class="content">
+    <h2>Why This Platform Exists</h2>
+    <p>
+      We believe in empowering students with knowledge, support, and resources to make informed decisions. 
+      Our mission is to create awareness about drug abuse while fostering a judgment-free community where 
+      everyone can learn and grow together.
+    </p>
+  </div>
+</section>
   <section class="features">
+  <h2 class="section-title">Key Features</h2>
+
+  <div class="features-container">
     <div class="feature-card">
       <img src="images/learn.icon.png" alt="Awareness">
       <h3>Learn</h3>
       <p>Access engaging resources, facts, and real stories to understand the effects of drug abuse.</p>
     </div>
+
     <div class="feature-card">
       <img src="images/support.png" alt="Support">
       <h3>Support</h3>
       <p>Find helplines, connect with counselors, and explore safe coping strategies.</p>
     </div>
+
     <div class="feature-card">
       <img src="images/coomunity.png" alt="Community">
       <h3>Community</h3>
       <p>Join conversations, share experiences, and encourage peers in a judgment-free zone.</p>
     </div>
+
     <div class="feature-card">
       <img src="images/events.png" alt="Events">
       <h3>Events</h3>
       <p>Stay updated on workshops, awareness campaigns, and wellness activities at MUBS.</p>
     </div>
-  </section>
+  </div>
+</section>
+
 
   <!-- Emergency Button -->
   <!-- <a href="tel:+256770772171" class="emergency-btn" title="Get Help Now">
@@ -620,7 +731,7 @@
   </a> -->
 
   <!-- WhatsApp Icon Button -->
-<a href="https://wa.me/+256-770772171?text=Hi%20Safe%20Space%20Hub!%20I%20need%20help" 
+<a href="https://wa.me/+256-754171462?text=Hi%20Safe%20Space%20Hub!%20I%20need%20help" 
    class="whatsapp-icon" 
    target="_blank" 
    title="Chat with Safe Space Hub">
