@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Safe Space - Learn Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #f5f7fa;
+      color: #333;
+    }
+
+    header {
+      background-color: #4a90e2;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .container {
+      display: flex;
+      padding: 20px;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .sidebar {
+      width: 220px;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      height: fit-content;
+    }
+
+    .sidebar h3 {
+      margin-top: 0;
+    }
+
+    .sidebar a {
+      display: block;
+      margin: 10px 0;
+      text-decoration: none;
+      color: #4a90e2;
+      font-weight: bold;
+    }
+
+    .main {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .progress-overall {
+      background-color: #ddd;
+      border-radius: 20px;
+      overflow: hidden;
+      margin-bottom: 30px;
+      height: 25px;
+    }
+
+    .progress-overall div {
+      height: 100%;
+      width: 0%;
+      background-color: #4a90e2;
+      text-align: center;
+      color: white;
+      line-height: 25px;
+      font-weight: bold;
+      transition: width 0.5s;
+    }
+
+    .modules {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .module-card {
+      background-color: #fff;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .module-card h4 {
+      margin-top: 0;
+    }
+
+    .module-card p {
+      font-size: 0.9em;
+      color: #555;
+    }
+
+    .progress-bar {
+      background-color: #ddd;
+      border-radius: 10px;
+      overflow: hidden;
+      height: 15px;
+      margin: 10px 0;
+    }
+
+    .progress-bar div {
+      height: 100%;
+      width: 0%;
+      background-color: #4a90e2;
+      transition: width 0.5s;
+    }
+
+    .module-card button {
+      background-color: #4a90e2;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .module-card button:hover {
+      background-color: #357abd;
+    }
+
+    .self-assessment {
+      margin-top: 30px;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .self-assessment h3 {
+      margin-top: 0;
+    }
+
+    .quiz-container {
+      margin-top: 15px;
+    }
+
+    .quiz-container input[type="radio"] {
+      margin-right: 5px;
+    }
+
+    .quiz-container button {
+      margin-top: 10px;
+    }
+
+    .result {
+      margin-top: 10px;
+      font-weight: bold;
+      color: green;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Welcome to Safe Space Learning</h1>
+    <p>Your journey to growth starts here</p>
+  </header>
+
+  <div class="container">
+    <!-- Sidebar Navigation -->
+    <div class="sidebar">
+      <h3>Navigation</h3>
+      <a href="#">Dashboard</a>
+      <a href="#">Articles</a>
+      <a href="#">Videos</a>
+      <a href="#">Self-Assessment</a>
+      <a href="#">Bookmarks</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main">
+      <!-- Overall Progress -->
+      <div class="progress-overall">
+        <div id="overallProgress">0% Complete</div>
+      </div>
+
+      <!-- Learning Modules -->
+      <div class="modules" id="modulesContainer">
+        <!-- Modules will be injected via JavaScript -->
+      </div>
+
+      <!-- Self-Assessment -->
+      <div class="self-assessment">
+        <h3>Self-Assessment Tools</h3>
+        <p>Take mini quizzes to reflect on your progress.</p>
+
+        <div class="quiz-container" id="quizContainer">
+          <h4>Stress Awareness Quiz</h4>
+          <p>1. Do you feel stressed often?</p>
+          <label><input type="radio" name="q1" value="Yes"> Yes</label><br>
+          <label><input type="radio" name="q1" value="No"> No</label><br>
+          <button onclick="submitQuiz()">Submit Quiz</button>
+          <div class="result" id="quizResult"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Mock Data for Modules
+    const modules = [
+      { title: "Stress Management", description: "Learn techniques to manage stress.", progress: 50 },
+      { title: "Understanding Anxiety", description: "Watch and learn about anxiety triggers.", progress: 20 },
+      { title: "Healthy Relationships", description: "Build meaningful and supportive relationships.", progress: 0 },
+      { title: "Mindfulness & Meditation", description: "Practice mindfulness for mental clarity.", progress: 70 },
+      { title: "Time Management", description: "Learn to manage time effectively.", progress: 30 },
+    ];
+
+    const modulesContainer = document.getElementById('modulesContainer');
+
+    // Function to render modules
+    function renderModules() {
+      modulesContainer.innerHTML = '';
+      modules.forEach((module, index) => {
+        const moduleCard = document.createElement('div');
+        moduleCard.className = 'module-card';
+        moduleCard.innerHTML = `
+          <h4>${module.title}</h4>
+          <p>${module.description}</p>
+          <div class="progress-bar"><div id="progress${index}" style="width:${module.progress}%;"></div></div>
+          <button onclick="increaseProgress(${index})">${module.progress === 0 ? 'Start' : 'Continue'}</button>
+        `;
+        modulesContainer.appendChild(moduleCard);
+      });
+      updateOverallProgress();
+    }
+
+    // Function to increase progress
+    function increaseProgress(index) {
+      if (modules[index].progress < 100) {
+        modules[index].progress += 10;
+        if (modules[index].progress > 100) modules[index].progress = 100;
+        document.getElementById(`progress${index}`).style.width = modules[index].progress + '%';
+      }
+      renderModules();
+    }
+
+    // Update Overall Progress
+    function updateOverallProgress() {
+      const totalProgress = modules.reduce((sum, mod) => sum + mod.progress, 0);
+      const overall = Math.round(totalProgress / modules.length);
+      const overallDiv = document.getElementById('overallProgress');
+      overallDiv.style.width = overall + '%';
+      overallDiv.innerText = overall + '% Complete';
+    }
+
+    // Quiz Functionality
+    function submitQuiz() {
+      const q1 = document.querySelector('input[name="q1"]:checked');
+      const resultDiv = document.getElementById('quizResult');
+      if (!q1) {
+        resultDiv.innerText = "Please select an answer.";
+        resultDiv.style.color = "red";
+        return;
+      }
+      if (q1.value === "Yes") {
+        resultDiv.innerText = "Try to incorporate stress management techniques daily!";
+      } else {
+        resultDiv.innerText = "Great! Keep maintaining your calm.";
+      }
+      resultDiv.style.color = "green";
+    }
+
+    // Initial Render
+    renderModules();
+  </script>
+</body>
+</html>
